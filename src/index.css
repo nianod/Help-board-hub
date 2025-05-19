@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@layer utilities {
+  body {
+    background: #242424;
+  }
+ 
+}
