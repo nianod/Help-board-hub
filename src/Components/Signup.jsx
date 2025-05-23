@@ -12,11 +12,11 @@ const SignUp = () => {
   const handlESubmit = (event) => {
     event.preventDefault();
 
-     if(setPassword1 !== setPassword2) {
+     if(password1 !== password2) {
       alert("Password did not match")
       return
     }
-    setRegister(true)
+
     alert("registered succesfully")
     
   }
@@ -26,13 +26,15 @@ const SignUp = () => {
 
   return (
     <div>
-      <form onSubmit={handlESubmit} >
+      <form onSubmit={handlESubmit} className='bg-blue-800 gap-1 mt-5 max-w-xl mx-auto p-6 flex flex-col text-white rounded-xl bodaree'>
+        <h2 className='text-center p-2   text-white font-bold text-xl'>Sign Up</h2>
         <label>Email: </label>
         <input type="email"
           placeholder= "Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          className='p-3 rounded bg-black focus:outline-transparent'
         />
         <label>Username: </label>
         <input type="text"
@@ -40,6 +42,7 @@ const SignUp = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
+          className='p-3 rounded bg-black focus:outline-transparent'
         />
         <label>Password: </label>
         <input type="password"
@@ -47,6 +50,7 @@ const SignUp = () => {
           value={password1}
           onChange={(e) => setPassword1(e.target.value)}
           required
+          className='p-3 rounded bg-black focus:outline-transparent'
         />
         <label>Confrim Password: </label>
         <input type="password"
@@ -54,8 +58,11 @@ const SignUp = () => {
           value={password2}
           onChange={(e) => setPassword2(e.target.value)}
           required
+          className='p-3 rounded bg-black focus:outline-transparent shadow-lg'
         />
-        <button otype="submit">
+        <button otype="submit"
+        className='bg-blue-300'
+        >
           Register
         </button>
       </form>
