@@ -1,4 +1,5 @@
 import { FaUser, FaLock } from 'react-icons/fa'
+import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 
 const SignUp = () => {
@@ -23,11 +24,8 @@ const SignUp = () => {
  
   return (
     <div className='pb-20'>
-      <form onSubmit={handlESubmit} className=' bg-blue-800 gap-1 mt-5 max-w-sm mx-auto p-4 flex flex-col text-white rounded-xl shadow-sm'>
-        <div className='items-center justify-center gap-5 text-xl font-bold flex'>
-          <button className=''> Sign-Up </button>
-          <button> Sign-In </button>
-        </div>
+      <form onSubmit={handlESubmit} className=' bg-blue-800 gap-1 mt-5 max-w-sm mx-auto p-4 flex flex-col text-white rounded-xl shadow-sm '>
+        <h2 className='text-white font-bold text-center text-2xl'>Sign Up</h2>
          <label>Email: </label>
         <input type="email"
           placeholder= "Enter your email"
@@ -65,6 +63,11 @@ const SignUp = () => {
         >
           Register
         </button>
+        <p>have an account?
+            <Link to='/Login'>
+              Login
+            </Link>
+           </p>
       </form>
     </div>
   )
