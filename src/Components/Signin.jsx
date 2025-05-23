@@ -6,10 +6,18 @@ const Signin = () => {
     const[login, setLogin] = useState(false)
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
+
 
 
     const handlESubmit = (event) => {
         event.preventDefault()
+        if(password.length < 6) {
+            setError("password too short")
+            return;
+        } 
+        setError("")
+        alert("logged successful");
     }
   return (
     <div className='container pb-20'>
@@ -35,9 +43,14 @@ const Signin = () => {
           required
           className='p-2 rounded bg-black focus:outline-transparent'
         />
-        {/* {error && <p className='text-red-600 flex justify-center text-sm'>{error}</p> } */}
-        <button otype="submit"
-        className='bg-blue-300 p-2 cursor-pointer font-bold rounded text-xl mt-5'
+        {error && <p className='text-red-600 flex justify-center text-sm'>{error}</p> }
+        <p className='gap-1 flex'> Forgot Password?
+            <Link to='/forgot' className=' text-blue-300 hover:underline hover:text-white'>
+               Reset
+            </Link>
+        </p>
+        <button type="submit"
+        className='bg-blue-300 p-2 cursor-pointer font-bold rounded text-xl mt-2'
         >
           Login
         </button>
