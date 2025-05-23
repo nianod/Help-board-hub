@@ -27,10 +27,11 @@ const SignUp = () => {
  
   return (
     <div className='container pb-20'>
-      <form onSubmit={handlESubmit} className=' bg-blue-800 gap-1 mt-5 max-w-sm mx-auto p-4 flex flex-col text-white rounded-xl shadow-sm '>
+      <form method='POST' onSubmit={handlESubmit} className=' bg-blue-800 gap-1 mt-5 max-w-sm mx-auto p-4 flex flex-col text-white rounded-xl shadow-sm '>
         <h2 className='text-white font-bold text-center text-2xl'>Sign Up</h2>
          <label>Email: </label>
         <input type="email"
+          autoComplete='email'
           placeholder= "Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -39,6 +40,8 @@ const SignUp = () => {
         />
         <label>Username: </label>
         <input type="text"
+           name='username'
+          autoComplete='username'
           placeholder= "Enter your Usename"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -47,7 +50,8 @@ const SignUp = () => {
         />
         <label>Password: </label>
         <input type="password"
-          placeholder= "Eter a password"
+          autoComplete='new-password'
+          placeholder= "Enter a password"
           value={password1}
           onChange={(e) => setPassword1(e.target.value)}
           required
@@ -55,6 +59,7 @@ const SignUp = () => {
         />
         <label>Confrim Password: </label>
         <input type="password"
+          autoComplete='new-password'
           placeholder= "Re-enter password"
           value={password2}
           onChange={(e) => setPassword2(e.target.value)}
