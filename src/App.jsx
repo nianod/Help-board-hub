@@ -1,4 +1,5 @@
 import SignUp from './Components/Signup'
+import Footer from './Components/Footer'
 import './App.css'
 
 function App() {
@@ -6,7 +7,8 @@ function App() {
   return (
     <>
       <div>
-        <SignUp/>
+        <SignUp />
+        <Footer />
       </div>
     </>
   )

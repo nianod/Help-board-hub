@@ -21,20 +21,20 @@ const SignUp = () => {
     
   }
  
-  
- 
-
   return (
-    <div>
-      <form onSubmit={handlESubmit} className='bg-blue-800 gap-1 mt-5 max-w-xl mx-auto p-6 flex flex-col text-white rounded-xl bodaree'>
-        <h2 className='text-center p-2   text-white font-bold text-xl'>Sign Up</h2>
-        <label>Email: </label>
+    <div className='pb-20'>
+      <form onSubmit={handlESubmit} className=' bg-blue-800 gap-1 mt-5 max-w-sm mx-auto p-4 flex flex-col text-white rounded-xl shadow-sm'>
+        <div className='items-center justify-center gap-5 text-xl font-bold flex'>
+          <button className=''> Sign-Up </button>
+          <button> Sign-In </button>
+        </div>
+         <label>Email: </label>
         <input type="email"
           placeholder= "Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className='p-3 rounded bg-black focus:outline-transparent'
+          className='p-2 rounded bg-black focus:outline-transparent'
         />
         <label>Username: </label>
         <input type="text"
@@ -42,7 +42,7 @@ const SignUp = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
-          className='p-3 rounded bg-black focus:outline-transparent'
+          className='p-2 rounded bg-black focus:outline-transparent'
         />
         <label>Password: </label>
         <input type="password"
@@ -50,7 +50,7 @@ const SignUp = () => {
           value={password1}
           onChange={(e) => setPassword1(e.target.value)}
           required
-          className='p-3 rounded bg-black focus:outline-transparent'
+          className='p-2 rounded bg-black focus:outline-transparent'
         />
         <label>Confrim Password: </label>
         <input type="password"
@@ -58,10 +58,10 @@ const SignUp = () => {
           value={password2}
           onChange={(e) => setPassword2(e.target.value)}
           required
-          className='p-3 rounded bg-black focus:outline-transparent shadow-lg'
+          className='p-2 rounded bg-black focus:outline-transparent shadow-lg'
         />
         <button otype="submit"
-        className='bg-blue-300'
+        className='bg-blue-300 p-2 cursor-pointer font-bold rounded text-xl mt-5'
         >
           Register
         </button>
