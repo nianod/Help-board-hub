@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { FaSignOutAlt, FaUserCircle, FaUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import Dashboard from '../Pages/Dashboard'
 
 const navContentes = {
   imag: "/download.jpg",
@@ -27,6 +28,7 @@ const Header = () => {
     setShowLogoutConfirmation(false)
   }
   const cancelLogout = () => {
+    navigate('Dashboard')
 
   }
 
