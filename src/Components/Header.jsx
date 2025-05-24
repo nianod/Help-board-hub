@@ -1,3 +1,4 @@
+import LogoutConfirmation from './Logout'
 import { useState } from 'react'
 import { FaSignOutAlt, FaUserCircle, FaUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
@@ -9,13 +10,22 @@ const navContentes = {
 
 const Header = () => {
   const [sideMenu, setSideMenu] = useState(false)
+  const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
   const toggles = () => {
     setSideMenu(prev => !prev)
   }
 
   const handleLogout = () => {
-    alert("Logged out")
-    setSideMenu(false)
+    setShowLogoutConfirmation(true)
+    // alert("Logged out")
+    // setSideMenu(false)
+  }
+  const confirmLogout = () => {
+    alert("success!")
+    setShowLogoutConfirmation(false)
+  }
+  const cancelLogout = () => {
+    
   }
 
   return (
@@ -53,6 +63,9 @@ const Header = () => {
           )}
         </div>
       </div>
+      {showLogoutConfirmation && (
+        <LogoutConfirmation onConfirm={confirmLogout} onCancel={cancelLogout} />
+      )}
     </>   
   )
 }
