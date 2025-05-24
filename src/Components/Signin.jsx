@@ -45,7 +45,7 @@ const Signin = () => {
         />
         {error && <p className='text-red-600 flex justify-center text-sm'>{error}</p> }
         <p className='gap-1 flex'> Forgot Password?
-            <Link to='/forgot' className=' text-blue-300 hover:underline hover:text-white'>
+            <Link to='/reset' className=' text-blue-300 hover:underline hover:text-white'>
                Reset
             </Link>
         </p>
