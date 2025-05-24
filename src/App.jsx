@@ -7,6 +7,7 @@ import SignUp from './Pages/Signup';
 import Signin from './Pages/Signin';
 import Reset from './Pages/Reset';
 import Dashboard from './Pages/Dashboard';
+import UserProfile from './Components/UserProfile';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         </Route>
         <Route element={<Layout />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path='/userProfile' element={<UserProfile />} />
         </Route>
       </Routes>
     </Router>

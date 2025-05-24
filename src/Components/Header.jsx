@@ -36,7 +36,7 @@ const Header = () => {
             <div className='absolute right-0 w-40 bg-white rounded p-2 z-50 shadow-md mt-1'> 
               <Link 
                 to="/userProfile" 
-                className='block px-4 py-2 hover:bg-gray-100 rounded flex items-center' 
+                className='gap-1 px-4 py-2 hover:bg-gray-100 rounded flex items-center' 
                 onClick={() => setSideMenu(false)}
               >
                 {<FaUser />}
@@ -44,7 +44,7 @@ const Header = () => {
               </Link>
               <button 
                 onClick={handleLogout}
-                className='w-full text-left px-4 py-2 hover:bg-gray-100 rounded flex items-center cursor-pointer'
+                className='w-full gap-1 text-left px-4 py-2 hover:bg-gray-100 rounded flex items-center cursor-pointer'
               >
                 {<FaSignOutAlt />}
                 Logout
