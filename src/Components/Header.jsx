@@ -2,6 +2,7 @@ import LogoutConfirmation from './Logout'
 import { useState } from 'react'
 import { FaSignOutAlt, FaUserCircle, FaUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const navContentes = {
   imag: "/download.jpg",
@@ -10,22 +11,23 @@ const navContentes = {
 
 const Header = () => {
   const [sideMenu, setSideMenu] = useState(false)
+  const [goToLogin, setGoToLogin] = useState(false)
   const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
+  const navigate = useNavigate()
   const toggles = () => {
     setSideMenu(prev => !prev)
   }
 
   const handleLogout = () => {
     setShowLogoutConfirmation(true)
-    // alert("Logged out")
-    // setSideMenu(false)
+    setSideMenu(false)
   }
   const confirmLogout = () => {
-    alert("success!")
+    navigate('/')
     setShowLogoutConfirmation(false)
   }
   const cancelLogout = () => {
-    
+
   }
 
   return (
