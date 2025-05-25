@@ -37,8 +37,7 @@ const Header = () => {
     } else {
       navigate('/')
     }
-    navigate('/Dashboard')
-
+ 
 
   }
 
