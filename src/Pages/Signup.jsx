@@ -24,7 +24,7 @@ const SignUp = () => {
       setError("Password too short")
     } else {
       setError("")
-      alert("registerd successfully")
+      // alert("registerd successfully")
       //Redirect to respective dashboard as selected in home page
 
 

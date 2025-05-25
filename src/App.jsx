@@ -8,7 +8,8 @@ import Home from './Pages/Home';
 import SignUp from './Pages/Signup';
 import Signin from './Pages/Signin';
 import Reset from './Pages/Reset';
-import Dashboard from './Pages/Dashboard';
+import HelperDashboard from './Pages/HelperDashboard';
+import SeekerDashboard from './Pages/SeekerDashboard';
 import UserProfile from './Components/UserProfile';
 
 
@@ -29,7 +30,8 @@ function App() {
           <Route path="/reset" element={<Reset />} />
         </Route>
         <Route element={<Layout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/helper" element={<HelperDashboard />} />
+          <Route path="/dashboard/seeker" element={<SeekerDashboard />} />
           <Route path='/userProfile' element={<UserProfile />} />
         </Route>
       </Routes>

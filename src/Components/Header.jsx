@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { FaSignOutAlt, FaUserCircle, FaUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import Dashboard from '../Pages/Dashboard'
+import Dashboard from '../Pages/HelperDashboard'
 
 const navContentes = {
   imag: "/download.jpg",
