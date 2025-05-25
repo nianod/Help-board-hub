@@ -27,8 +27,10 @@ const Header = () => {
     navigate('/')
     setShowLogoutConfirmation(false)
   }
-  const cancelLogout = () => {
-    navigate('Dashboard')
+  const cancelLogout = () => { 
+    setShowLogoutConfirmation(false)
+    navigate('/Dashboard')
+
 
   }
 

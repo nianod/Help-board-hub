@@ -1,3 +1,5 @@
+import { useEffect} from 'react'
+import AOS from 'aos'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Layout from './Components/Layout';
@@ -11,6 +13,12 @@ import UserProfile from './Components/UserProfile';
 
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true
+    })
+  }, []);
   return (
     <Router>
       <Routes>

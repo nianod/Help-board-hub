@@ -1,4 +1,5 @@
 import { FaUser, FaLock } from 'react-icons/fa'
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react'
 
@@ -9,7 +10,10 @@ const SignUp = () => {
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("")
   const [error, setError] = useState("")
-
+  const location = useLocation()
+  const navigate = useNavigate()
+  const params = new URLSearchParams(location.search)
+  const role = params.get('role')
 
   const handlESubmit = (event) => {
     event.preventDefault();
@@ -21,6 +25,16 @@ const SignUp = () => {
     } else {
       setError("")
       alert("registerd successfully")
+      //Redirect to respective dashboard as selected in home page
+
+
+      if(role === 'helper') {
+        navigate('/dashboard/helper')
+      } else if (role === 'seeker') {
+        navigate('/dashboard/seeker')
+      } else {
+        navigate('/')
+      }
     }
     
   }

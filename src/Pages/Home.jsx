@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div className="text-center p-8">
+    <div data-aos="zoom-out-up" className="text-center p-8">
       <h1 className="text-4xl font-bold mb-6">Welcome to Help Hub!</h1>
       <p className="mb-8">Join us as a:</p>
       <div className="flex gap-4 justify-center">
