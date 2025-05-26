@@ -12,6 +12,7 @@ import HelperDashboard from './Pages/HelperDashboard';
 import SeekerDashboard from './Pages/SeekerDashboard';
 import UserProfile from './Components/UserProfile';
 import Notice from './Components/404';
+import { authContextProvider } from './supabase/Authcontext';
 
 
 function App() {
