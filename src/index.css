@@ -3,6 +3,6 @@
 :root {
   --main-background : rgba(56, 97, 56, 1)
 }
-body {
+/* body {
   background: var(--main-background);
-}
+} */

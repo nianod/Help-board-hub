@@ -3,8 +3,7 @@ import React from 'react'
 const SeekerDashboard = () => {
   return (
     <div>
-      <h2>who can fix you laptop</h2>
-      <p>lorem</p>
+      <button className='p-3 bg-red-400 rounded mt-5 m-4 cursor-pointer font-bold'>Post new update</button>
     </div>
   )
 }

@@ -11,6 +11,7 @@ import Reset from './Pages/Reset';
 import HelperDashboard from './Pages/HelperDashboard';
 import SeekerDashboard from './Pages/SeekerDashboard';
 import UserProfile from './Components/UserProfile';
+import Notice from './Components/404';
 
 
 function App() {

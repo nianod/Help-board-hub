@@ -1,4 +1,5 @@
 import React from 'react'
+import Notice from './404';
 const rootImg = {
     imageurl: "/download.jpg"
 }
@@ -7,7 +8,7 @@ const footerContents = [
     {label: "Privacy", href: "#"},
     {label: "Security", href: "#"},
     {label: "Policy", href: "#"},
-    {label: "contact", href: "#"}
+    {label: "contact", href: "Notice"}
 ]
 
 const Footer = () => {
