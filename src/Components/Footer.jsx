@@ -1,12 +1,14 @@
+import { Link } from 'react-router-dom'
+
 const rootImg = {
     imageurl: "/download.jpg"
 }
 const footerContents = [
-    {label: "Terms", href: "#" },
-    {label: "Privacy", href: "#"},
-    {label: "Security", href: "#"},
-    {label: "Policy", href: "#"},
-    {label: "contact", href: "Notice"}
+    {label: "Terms", href: "/404" },
+    {label: "Privacy", href: "/404"},
+    {label: "Security", href: "/404"},
+    {label: "Policy", href: "/404"},
+    {label: "contact", href: "/404"}
 ]
  
 const Footer = () => {
@@ -23,15 +25,12 @@ const Footer = () => {
       <ul className='flex gap-4 ml-4'>
         {footerContents.map((item, index) => (
           <li key={index} className='list-none'>
-            <a
-              
-              href={item.href}
-              target='_blank'
-              rel='noopener noreferrer'
+            <Link
+              to={item.href}
               className='text-white hover:underline'
             >
               {item.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

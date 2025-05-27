@@ -34,6 +34,7 @@ function App() {
           <Route path="/dashboard/helper" element={<HelperDashboard />} />
           <Route path="/dashboard/seeker" element={<SeekerDashboard />} />
           <Route path='/userProfile' element={<UserProfile />} />
+          <Route path='/404' element={<Notice />} />
         </Route>
       </Routes>
     </Router>
