@@ -30,7 +30,7 @@ const handleSubmit =  (event) => {
     setError("Password must be at least 6 characters");
     return;
 }
-  console.log("current role", role)
+ 
 
   if (role === 'helper') {
       navigate('/dashboard/helper');
