@@ -1,5 +1,3 @@
-import React from 'react'
-import Notice from './404';
 const rootImg = {
     imageurl: "/download.jpg"
 }
@@ -10,7 +8,7 @@ const footerContents = [
     {label: "Policy", href: "#"},
     {label: "contact", href: "Notice"}
 ]
-
+ 
 const Footer = () => {
   return (
     <div className='flex items-center justify-between p-5 bg-blue-950 shadow-inner w-full z-50 fixed bottom-0 '>
@@ -26,6 +24,7 @@ const Footer = () => {
         {footerContents.map((item, index) => (
           <li key={index} className='list-none'>
             <a
+              
               href={item.href}
               target='_blank'
               rel='noopener noreferrer'

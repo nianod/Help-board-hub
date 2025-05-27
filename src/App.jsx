@@ -12,8 +12,6 @@ import HelperDashboard from './Pages/HelperDashboard';
 import SeekerDashboard from './Pages/SeekerDashboard';
 import UserProfile from './Components/UserProfile';
 import Notice from './Components/404';
-import { AuthContextProvider } from './supabase/AuthContext';
- 
 
 function App() {
   useEffect(() => {
@@ -23,7 +21,7 @@ function App() {
     })
   }, []);
   return (
-    <AuthContextProvider>
+    <>
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -39,7 +37,7 @@ function App() {
         </Route>
       </Routes>
     </Router>
-    </AuthContextProvider>
+    </>
   );
 }
 
