@@ -33,8 +33,10 @@ const handleSubmit =  (event) => {
 
   }if (role === 'helper') {
       navigate('/dashboard/helper');
+      localStorage.setItem('role', 'helper')
     } else if (role === 'seeker') {
       navigate('/dashboard/seeker');
+      localStorage.setItem('role', 'seeker')
     } else {
       navigate('/');
     }
