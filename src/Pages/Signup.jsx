@@ -29,9 +29,10 @@ const handleSubmit =  (event) => {
  if (password1.length < 6) {
     setError("Password must be at least 6 characters");
     return;
+}
+  console.log("current role", role)
 
-
-  }if (role === 'helper') {
+  if (role === 'helper') {
       navigate('/dashboard/helper');
       localStorage.setItem('role', 'helper')
     } else if (role === 'seeker') {
@@ -39,6 +40,7 @@ const handleSubmit =  (event) => {
       localStorage.setItem('role', 'seeker')
     } else {
       navigate('/');
+    
     }
   
 };

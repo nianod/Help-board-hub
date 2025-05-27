@@ -45,16 +45,10 @@ const Header = () => {
     setShowLogoutConfirmation(false);
   };
 
+ 
   const cancelLogout = () => {
     setShowLogoutConfirmation(false);
-    const role = localStorage.getItem("role");
-    if (role === "helper") {
-      navigate('dashboard/helper');
-    } else if (role === "seeker") {
-      navigate("dashboard/seeker");
-    } else {
-      navigate('/');
-    }
+
   };
 
   return (
