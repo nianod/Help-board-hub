@@ -18,7 +18,7 @@ const Post = ( {onCancel} ) => {
       <h2 className="text-2xl font-bold text-center mb-6">Post New Update</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-green-300 mb-2">
+          <label className="block text-sm font-medium text-black mb-2">
             Post Content
           </label>
           <textarea
@@ -32,7 +32,7 @@ const Post = ( {onCancel} ) => {
         </div>
         
         <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-black mb-2">
             Category
           </label>
           <select
@@ -44,13 +44,13 @@ const Post = ( {onCancel} ) => {
             <option value="electronics">Tech</option>
             <option value="health">Health</option>
             <option value="general">Electronics</option>
-            <option value="general">Academic</option>
-            <option value="general">Errands</option>
-            <option value="general">General</option>
-            <option value="general">Other</option>
+            <option value="Academic">Academic</option>
+            <option value="Errands">Errands</option>
+            <option value="General">General</option>
+            <option value="Other">Other</option>
           </select>
         </div>
-        <label htmlFor="imageUpload" className="block mb-2">Upload Image</label>
+        <label className="block mb-2 text-black text-sm font-medium">Upload Image <span className='text-gray-400'>(optional)</span></label> 
         <input
           type="file"
           id="imageUpload"
