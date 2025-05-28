@@ -6,7 +6,7 @@ const Post = ( {onCancel} ) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
+    // Send the data to your backend
     console.log({ postText, category });
     alert(`Post submitted!\nText: ${postText}\nCategory: ${category}`);
     setPostText('');
