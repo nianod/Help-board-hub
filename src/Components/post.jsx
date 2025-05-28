@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Post = () => {
+const Post = ( {onCancel} ) => {
   const [postText, setPostText] = useState('');
   const [category, setCategory] = useState('general');
 
@@ -59,7 +59,8 @@ const Post = () => {
         />
         <div className='flex gap-3 mt-5'>
           <button
-            type="reset"
+            type="button"
+            onClick={onCancel}
             className="cursor-pointer rounded-md bg-blue-900 text-white p-1 font-bold"
           >
             Cancel
