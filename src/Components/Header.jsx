@@ -53,7 +53,7 @@ const Header = () => {
 
   return (
     <>
-      <div className='bg-blue-700 flex items-center justify-between p-2 relative'>
+<div className='bg-blue-700 flex items-center justify-between p-2 fixed top-0 left-0 right-0 z-50'>
         <div className='flex items-center gap-3'>
           <img
             src={navContentes.imag}
