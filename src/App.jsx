@@ -12,7 +12,6 @@ import HelperDashboard from './Pages/HelperDashboard';
 import SeekerDashboard from './Pages/SeekerDashboard';
 import UserProfile from './Components/UserProfile';
 import Notice from './Components/404';
-import Post from './Components/post';
 
 function App() {
   useEffect(() => {
@@ -36,8 +35,7 @@ function App() {
           <Route path="/dashboard/seeker" element={<SeekerDashboard />} />
           <Route path='/userProfile' element={<UserProfile />} />
           <Route path='/404' element={<Notice />} />
-          <Route path='/post' element={<Post />} />
-        </Route>
+         </Route>
       </Routes>
     </Router>
     </>
