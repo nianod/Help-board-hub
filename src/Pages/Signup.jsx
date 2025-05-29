@@ -11,7 +11,7 @@ const [password1, setPassword1] = useState("")
 const [password2, setPassword2] = useState("")
 const [error, setError] = useState("")
 
-const { session } = UserAuth()
+const { session, registerNewUser } = UserAuth()
 console.log(session);
 
 
@@ -22,7 +22,7 @@ const role = params.get('role')
 
 
   
-const handleSubmit =  (event) => {
+const handleSubmit =  (event) => { 
   event.preventDefault();
   setError("");
  
