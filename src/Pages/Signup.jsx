@@ -1,6 +1,7 @@
 import { FaUser, FaLock } from 'react-icons/fa';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import React, { useState } from 'react';
+import { UserAuth } from '../Supabase/AuthContext';
 
 const SignUp = () => {
 
@@ -10,6 +11,9 @@ const [password1, setPassword1] = useState("")
 const [password2, setPassword2] = useState("")
 const [error, setError] = useState("")
 
+const { session } = UserAuth()
+console.log(session);
+
 
 const location = useLocation()
 const navigate = useNavigate()
@@ -17,7 +21,7 @@ const params = new URLSearchParams(location.search)
 const role = params.get('role')
 
 
-
+  
 const handleSubmit =  (event) => {
   event.preventDefault();
   setError("");
