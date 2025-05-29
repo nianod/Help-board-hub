@@ -3,6 +3,7 @@ import LogoutConfirmation from './Logout';
 import { FaSignOutAlt, FaUserCircle, FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'; 
+import { UserAuth } from '../Supabase/AuthContext';
 
 const navContentes = {
   imag: "/download.jpg",
@@ -15,6 +16,8 @@ const Header = () => {
   const navigate = useNavigate();  
   const menuRef = useRef(null);
   const userIconRef = useRef(null);  
+
+  const { session, signOut } = UserAuth()
 
   useEffect(() => {
     const clickOutside = (event) => {
@@ -40,9 +43,15 @@ const Header = () => {
     setSideMenu(false);
   };
 
-  const confirmLogout = () => {
-    navigate('/');
-    setShowLogoutConfirmation(false);
+  const confirmLogout = async (event) => {
+    event.preventDefault()
+    try {
+      await signOut() 
+      navigate('/');
+      setShowLogoutConfirmation(false);
+    } catch(err) {
+      console.err(err)
+    }
   };
 
  

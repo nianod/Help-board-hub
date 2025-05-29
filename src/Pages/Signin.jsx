@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { UserAuth } from '../Supabase/AuthContext';
+ 
 
  const Signin = () => {
 
@@ -9,8 +10,11 @@ import { Link, useNavigate } from 'react-router-dom';
   const [password, setPassword] = useState("")
   const [error, setError] = ("")
   const [loading, setLoading] = useState(false)
+  const params = new URLSearchParams(location.search)
+  const role = params.get('role')
+  const navigate = useNavigate()
+  const { session, SignIn } = UserAuth();
 
-  
 const handleSubmit = async (event) => {
   event.preventDefault();
   setError("");
@@ -20,6 +24,29 @@ const handleSubmit = async (event) => {
     return;
   }
 
+  try {
+    const result = await SignIn(username, password)
+
+
+    if(result.success) {
+        setError("")
+        if(role === 'helper') {
+            navigate('/dashboard/helper')
+            localStorage.getItem('role', 'helper')
+        } else if(role === 'seeker') {
+            navigate('/dashboard/seeker')
+        } else {
+            navigate('/')
+        }
+    } else {
+        result.error || 'Signing in failed';
+    }
+  } catch(err){
+        setError("Error occured")
+        console.error(err)
+  }finally {
+    setLoading(false)
+  }
 
 };
 
