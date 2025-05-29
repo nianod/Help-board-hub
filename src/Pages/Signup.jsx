@@ -10,10 +10,10 @@ const [username, setUsername] = useState("")
 const [password1, setPassword1] = useState("")
 const [password2, setPassword2] = useState("")
 const [error, setError] = useState("")
+const [loading, setLoading] = useState(false)
 
 const { session, registerNewUser } = UserAuth()
 console.log(session);
-
 
 const location = useLocation()
 const navigate = useNavigate()
@@ -24,8 +24,14 @@ const role = params.get('role')
   
 const handleSubmit =  (event) => { 
   event.preventDefault();
-  setError("");
- 
+  setLoading(true)
+  try {
+    const result = await registerNewUser(email, username, password1, password2)
+    if(result.success) {
+        setError("");
+    }
+  }
+   
   if (password1 !== password2) {
     setError("Passwords do not match");
     return;
