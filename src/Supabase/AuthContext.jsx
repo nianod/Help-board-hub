@@ -10,8 +10,12 @@ export const AuthContextProvider = ({ children }) => {
     const registerNewUser = async (email, username, password) => {
         const { data, error } = await supabase.auth.signUp ({
             email,
-            username,
-            password
+            password,
+            options: {
+                data: {
+                    username,
+                }
+            }
         })
         if(error) {
             console.error("There was an error signing up", error)
@@ -20,18 +24,13 @@ export const AuthContextProvider = ({ children }) => {
         return{success: true, data}
     }
 
-
     //Sign in
-    const SignIn = async ({ username, password }) => {
+    const SignIn = async ( email, username, password ) => {
         try {
             const { data, error } = await supabase.auth.signInWithPassword({
                 email,
                 password,
-                options: {
-                    data: {
-                        username,
-                    }
-                }
+                username
             })
             if(error) {
                 console.error("An error occurred", error);

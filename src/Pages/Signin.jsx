@@ -5,10 +5,10 @@ import { UserAuth } from '../Supabase/AuthContext';
 
  const Signin = () => {
 
-
+  const [email, setEmail] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const [error, setError] = ("")
+  const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const params = new URLSearchParams(location.search)
   const role = params.get('role')
@@ -25,7 +25,7 @@ const handleSubmit = async (event) => {
   }
 
   try {
-    const result = await SignIn(username, password)
+    const result = await SignIn( email, username, password)
 
 
     if(result.success) {
@@ -39,10 +39,10 @@ const handleSubmit = async (event) => {
             navigate('/')
         }
     } else {
-        result.error || 'Signing in failed';
+        setError( result.error || 'Signing in failed');
     }
   } catch(err){
-        setError("Error occured")
+        setError("Error occured", error.message)
         console.error(err)
   }finally {
     setLoading(false)
@@ -56,6 +56,17 @@ const handleSubmit = async (event) => {
             <form onSubmit={handleSubmit} className='bg-blue-800 gap-1 mt-5 max-w-sm mx-auto p-4 flex flex-col text-white rounded-xl shadow-sm'>
                 <h2 className='text-white font-bold text-center text-2xl'>Sign In</h2>
                 
+                <label>Email: </label>
+                <input 
+                    type="email"
+                    name='email'
+                    autoComplete='email'
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className='p-2 rounded bg-black focus:outline-none focus:ring-2 focus:ring-blue-500'
+                />
                 <label>Username: </label>
                 <input 
                     type="text"
@@ -81,7 +92,7 @@ const handleSubmit = async (event) => {
                     className='p-2 rounded bg-black focus:outline-none focus:ring-2 focus:ring-blue-500'
                 />
                 
-                {error && <p className='text-red-400 bg-red-900/50 p-2 rounded text-sm'>{error}</p>}
+                {error && <p className='text-red-400 p-2 rounded text-sm'>{error}</p>}
                 
                 <p className='gap-1 flex'> 
                     Forgot Password?
