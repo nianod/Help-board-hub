@@ -22,27 +22,28 @@ const role = params.get('role')
 
 
   
-const handleSubmit =  (event) => { 
+const handleSubmit = async (event) => { 
   event.preventDefault();
   setLoading(true)
-  try {
-    const result = await registerNewUser(email, username, password1, password2)
-    if(result.success) {
-        setError("");
-    }
-  }
+
    
   if (password1 !== password2) {
     setError("Passwords do not match");
+    setLoading(false)
     return;
   }
  if (password1.length < 6) {
     setError("Password must be at least 6 characters");
+    setLoading(false)
     return;
 }
  
+  try {
+    const result = await registerNewUser(email, username, password1, password2)
 
-  if (role === 'helper') {
+    if(result.success) {
+      setError("")
+       if (role === 'helper') {
       navigate('/dashboard/helper');
       localStorage.setItem('role', 'helper')
     } else if (role === 'seeker') {
@@ -50,8 +51,20 @@ const handleSubmit =  (event) => {
       localStorage.setItem('role', 'seeker')
     } else {
       navigate('/');
-    
     }
+
+    } else {
+      setError(result.error || "Registration failed");
+    }
+
+  } catch (err) {
+    setError("Unexpected error occurred")
+    console.err(err)
+  } finally {
+    setLoading(false)
+  }
+
+ 
   
 };
 
