@@ -5,7 +5,7 @@ const Post = ( {onCancel, post } ) => {
   const [category, setCategory] = useState('general');
   const [contact, setContact] = useState("")
 
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Send the data to your backend
@@ -44,6 +44,7 @@ const Post = ( {onCancel, post } ) => {
             onChange={(e) => setCategory(e.target.value)}
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
+            <option value="" disabled>Select a category</option>
             <option value="Tech">Tech</option>
             <option value="Health">Health</option>
             <option value="Electronics">Electronics</option>
@@ -60,6 +61,7 @@ const Post = ( {onCancel, post } ) => {
             value={contact}
              onChange={(e) => setContact(e.target.value)}
             >
+              <option value="" disabled>Choose contact method</option>
               <option value="Email">Email</option>
               <option value="SMS">SMS</option>
               <option value="Call">Call</option>
@@ -82,7 +84,6 @@ const Post = ( {onCancel, post } ) => {
             Cancel
           </button>
           <button
-            onClick={post}
             type='submit'
            className=" cursor-pointer rounded-md bg-blue-900 text-white w-20 p-1 font-bold"
           >
