@@ -5,13 +5,13 @@ const Post = ( {onCancel, post } ) => {
   const [category, setCategory] = useState('general');
   const [contact, setContact] = useState("")
   const [contactDetails, setContactDetails] = useState(null)
+  const [files, setFiles] = useState("")
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Send the data to backend
-    console.log({ postText, category });
-    alert(`Post submitted!\nText: ${postText}\nCategory: ${category}`);
+
     setPostText('');
     setContact("")
     setContactDetails("")
@@ -24,7 +24,7 @@ const Post = ( {onCancel, post } ) => {
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-sm font-medium text-black mb-2">
-            Post Content
+            Describe your Issue
           </label>
           <textarea
             value={postText}
@@ -48,7 +48,7 @@ const Post = ( {onCancel, post } ) => {
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="" disabled>Select a category</option>
-            <option value="Tech">Tech</option>
+            <option value="general">Tech</option>
             <option value="Health">Health</option>
             <option value="Electronics">Electronics</option>
             <option value="Academic">Academic</option>
@@ -87,7 +87,8 @@ const Post = ( {onCancel, post } ) => {
         <label className="block mb-2 text-black text-sm font-medium">Upload Image <span className='text-gray-400'>(optional)</span></label> 
         <input
           type="file"
-          id="imageUpload"
+          value={files}
+          onChange={(e) => setFiles(e.target.value)}
           accept="image/*"
           className="bg-blue-400 p-2 rounded"
         />
@@ -95,7 +96,7 @@ const Post = ( {onCancel, post } ) => {
           <button
             type="button"
             onClick={onCancel}
-            className="cursor-pointer rounded-md bg-blue-900 text-white w-20 font-bold"
+            className="cursor-pointer rounded-md bg-blue-900 text-white w-20 p-1 font-bold"
           >
             Cancel
           </button>
