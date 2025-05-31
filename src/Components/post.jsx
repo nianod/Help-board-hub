@@ -4,6 +4,7 @@ const Post = ( {onCancel, post } ) => {
   const [postText, setPostText] = useState('');
   const [category, setCategory] = useState('general');
   const [contact, setContact] = useState("")
+  const [contactDetails, setContactDetails] = useState("")
 
 
   const handleSubmit = (e) => {
@@ -67,6 +68,17 @@ const Post = ( {onCancel, post } ) => {
               <option value="Call">Call</option>
               <option value="Whatsapp">Whatsapp</option>
             </select>
+            {contact && (
+              <div className=''>
+                <label>
+                  Enter your {contact === 'Email' ? 'Email adress' : 'Phone number'}
+                </label>
+                <input type={contact === 'Email' ? 'email' : 'tel'} 
+                  value={contactDetails}
+                  onChange={(e) =>setContactDetails(e.target.value) }
+                />
+              </div>
+            )}
         </div>
         <label className="block mb-2 text-black text-sm font-medium">Upload Image <span className='text-gray-400'>(optional)</span></label> 
         <input
