@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Post = ( {onCancel, post } ) => {
+const Post = ( {onCancel } ) => {
   const [postText, setPostText] = useState('');
   const [category, setCategory] = useState('general');
   const [contact, setContact] = useState("")

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Post from '../Components/post';
 
 const SeekerDashboard = () => {
   const [showPostModal, setShowPostModal] = useState(false);
+  const [posts, setPosts] = useState([])
 
   return (
     <div className="relative">
@@ -18,6 +19,17 @@ const SeekerDashboard = () => {
             <Post onCancel  = {() => setShowPostModal(false)}/>
          </div>
       )}
+      <div>
+        {posts.length === 0 ? (
+          <p>No posts yest</p>
+        ) : (
+          posts.map(posts => (
+            <div key={posts.id}>
+              <h3>{posts.categry}</h3>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 };
