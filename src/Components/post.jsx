@@ -4,20 +4,22 @@ const Post = ( {onCancel, post } ) => {
   const [postText, setPostText] = useState('');
   const [category, setCategory] = useState('general');
   const [contact, setContact] = useState("")
-  const [contactDetails, setContactDetails] = useState("")
+  const [contactDetails, setContactDetails] = useState(null)
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Send the data to your backend
+    // Send the data to backend
     console.log({ postText, category });
     alert(`Post submitted!\nText: ${postText}\nCategory: ${category}`);
     setPostText('');
+    setContact("")
+    setContactDetails("")
     setCategory('general');
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mb-20 mt-20">
+    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mb-20 mt-20 overflow-y-auto max-h-[600px]">
       <h2 className="text-2xl font-bold text-center mb-6">Post New Update</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -69,13 +71,15 @@ const Post = ( {onCancel, post } ) => {
               <option value="Whatsapp">Whatsapp</option>
             </select>
             {contact && (
-              <div className=''>
-                <label>
-                  Enter your {contact === 'Email' ? 'Email adress' : 'Phone number'}
+              <div className='mt-4 mb-4'>
+                <label className='block text-sm font-medium'>
+                  Enter your {contact === 'Email' ? 'Email address' : 'Phone number'}
                 </label>
                 <input type={contact === 'Email' ? 'email' : 'tel'} 
+                  required
                   value={contactDetails}
                   onChange={(e) =>setContactDetails(e.target.value) }
+                  className='w-full p-3 mt-2 border border-gray-300 focus:outline-none rounded-md focus:ring-blue-500 focus:ring-2'
                 />
               </div>
             )}
