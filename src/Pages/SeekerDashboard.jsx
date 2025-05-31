@@ -15,8 +15,8 @@ const SeekerDashboard = () => {
 
       {showPostModal && (
         <div className="fixed inset-0 z-100 flex items-center justify-center bg-black bg-opacity-30">
-            <Post onCancel = {() => setShowPostModal(false)}/>
-        </div>
+            <Post onCancel  = {() => setShowPostModal(false)}/>
+         </div>
       )}
     </div>
   );

@@ -13,7 +13,7 @@ export const AuthContextProvider = ({ children }) => {
             password,
             options: {
                 data: {
-                    username,
+                    username, 
                 }
             }
         })
@@ -55,7 +55,7 @@ export const AuthContextProvider = ({ children }) => {
 
     }, [])
 
-
+ 
 
     // Sign out
 
