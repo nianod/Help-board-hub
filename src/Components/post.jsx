@@ -7,6 +7,7 @@ const Post = ( {onCancel, onAddPost } ) => {
   const [contact, setContact] = useState("")
   const [contactDetails, setContactDetails] = useState(null)
   const [files, setFiles] = useState("")
+  const [warning, setWarning] = useState("")
 
 
   const handleSubmit = async (e) => {
@@ -15,18 +16,25 @@ const Post = ( {onCancel, onAddPost } ) => {
 
     const { error } = await supabase.from('posts').insert([
       {
-        text: postText
+        text: postText,
+        category: category,
+        contact_method:contact,
+        contact_details: contactDetails
       }
     ])
 
-    
+      if(error) {
+        console.error("Error inserting post: ", error.message)
+        setWarning("Failed to submit the post")
+        setTimeout(() => setWarning(""), 3000)
+      } else {
+        setWarning("Post submitted successfully")
+        setPostText('');
+        setContact("")
+        setContactDetails("")
+        setCategory('general');
+      }
 
-
-
-    setPostText('');
-    setContact("")
-    setContactDetails("")
-    setCategory('general');
     const newPost = {
       id: Date.now(), //Unique id
       postText,
@@ -106,11 +114,13 @@ const Post = ( {onCancel, onAddPost } ) => {
         <label className="block mb-2 text-black text-sm font-medium">Upload Image <span className='text-gray-400'>(optional)</span></label> 
         <input
           type="file"
-          value={files}
           onChange={(e) => setFiles(e.target.value)}
           accept="image/*"
           className="bg-blue-400 p-2 rounded"
         />
+        {warning && (
+          <p className='text-red-500 mt-3 flex items-center justify-center'> {warning} </p>
+        )}
         <div className='flex gap-3 mt-5'>
           <button
             type="button"
