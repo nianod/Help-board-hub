@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { supabase } from '../libs/supabaseClient';
 
 const Post = ( {onCancel, onAddPost } ) => {
   const [postText, setPostText] = useState('');
@@ -8,9 +9,19 @@ const Post = ( {onCancel, onAddPost } ) => {
   const [files, setFiles] = useState("")
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Send the data to backend
+    // Send the data to backend 
+
+    const { error } = await supabase.from('posts').insert([
+      {
+        text: postText
+      }
+    ])
+
+    
+
+
 
     setPostText('');
     setContact("")

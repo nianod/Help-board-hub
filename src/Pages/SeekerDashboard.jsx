@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Post from '../Components/post';
 
+
 const SeekerDashboard = () => {
   const [showPostModal, setShowPostModal] = useState(false);
   const [posts, setPosts] = useState([])
@@ -8,6 +9,8 @@ const SeekerDashboard = () => {
   const handleAddPost = (newPost) => {
     setPosts([newPost, ...posts])
     setShowPostModal(false)
+
+    
   }
 
   return (
