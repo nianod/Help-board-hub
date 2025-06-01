@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Post = ( {onCancel } ) => {
+const Post = ( {onCancel, onAddPost } ) => {
   const [postText, setPostText] = useState('');
   const [category, setCategory] = useState('general');
   const [contact, setContact] = useState("")
@@ -16,6 +16,14 @@ const Post = ( {onCancel } ) => {
     setContact("")
     setContactDetails("")
     setCategory('general');
+    const newPost = {
+      id: Date.now(), //Unique id
+      postText,
+      category,
+      contact,
+      contactDetails
+    }
+    onAddPost(newPost)
   };
 
   return (

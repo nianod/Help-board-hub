@@ -5,6 +5,11 @@ const SeekerDashboard = () => {
   const [showPostModal, setShowPostModal] = useState(false);
   const [posts, setPosts] = useState([])
 
+  const handleAddPost = (newPost) => {
+    setPosts([newPost, ...posts])
+    setShowPostModal(false)
+  }
+
   return (
     <div className="relative">
       <button
@@ -16,16 +21,20 @@ const SeekerDashboard = () => {
 
       {showPostModal && (
         <div className="fixed inset-0 z-100 flex items-center justify-center bg-black bg-opacity-30">
-            <Post onCancel  = {() => setShowPostModal(false)}/>
+            <Post onCancel  = {() => setShowPostModal(false)}
+             onAddPost = {handleAddPost}  
+            />
          </div>
       )}
       <div>
         {posts.length === 0 ? (
-          <p>No posts yest</p>
+          <p>No posts yet</p>
         ) : (
           posts.map(posts => (
-            <div key={posts.id}>
-              <h3>{posts.categry}</h3>
+            <div key={posts.id} className='border p-3'>
+              <h3>{posts.category}</h3>
+              <p>{posts.postText}</p>
+              <small>contact via : {posts.contact} {posts.contactDetyaild} </small>
             </div>
           ))
         )}
