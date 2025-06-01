@@ -12,8 +12,7 @@ const Post = ( {onCancel, onAddPost } ) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Send the data to backend 
-
+ 
     try {
       
       const { data, error } = await supabase.from('posts').insert([
@@ -24,7 +23,8 @@ const Post = ( {onCancel, onAddPost } ) => {
           contact_detail: contactDetails
         }
       ])
-      .select(); ///This runs when insert recorded
+      .select();  
+
 
         if(error) {
           console.log(error)
@@ -43,7 +43,7 @@ const Post = ( {onCancel, onAddPost } ) => {
       }    
 
     const newPost = {
-      id: Date.now(), //Unique id
+      id: Date.now(), 
       postText,
       category,
       contact,
