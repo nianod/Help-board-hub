@@ -14,25 +14,33 @@ const Post = ( {onCancel, onAddPost } ) => {
     e.preventDefault();
     // Send the data to backend 
 
-    const { error } = await supabase.from('posts').insert([
-      {
-        text: postText,
-        category: category,
-        contact_method:contact,
-        contact_detail: contactDetails
-      }
-    ])
+    try {
+      
+      const { data, error } = await supabase.from('posts').insert([
+        {
+          text: postText,
+          category: category,
+          contact_method: contact,
+          contact_detail: contactDetails
+        }
+      ])
+      .select(); ///This runs when insert recorded
 
-      if(error) {
-         setWarning("Failed to submit the post")
-        setTimeout(() => setWarning(""), 3000)
-      } else {
-        setWarning("Post submitted successfully")
-        setPostText('');
-        setContact("")
-        setContactDetails("")
-        setCategory('general');
-      }
+        if(error) {
+          console.log(error)
+          setWarning("Failed to submit the post")
+        } else {
+          onAddPost(data[0])
+          setWarning("Post submitted successfully")
+          setPostText('');
+          setContact("")
+          setContactDetails("")
+          setCategory('general');
+        }
+      } catch(err) {
+            console.error("Error inserting post: ", err.message);
+            setWarning("Failed to submit the post");
+      }    
 
     const newPost = {
       id: Date.now(), //Unique id
@@ -41,8 +49,7 @@ const Post = ( {onCancel, onAddPost } ) => {
       contact,
       contactDetails
     }
-    onAddPost(newPost)
-  };
+   };
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mb-20 mt-20 overflow-y-auto max-h-[600px]">
