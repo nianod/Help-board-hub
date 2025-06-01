@@ -5,7 +5,7 @@ const Post = ( {onCancel, onAddPost } ) => {
   const [postText, setPostText] = useState('');
   const [category, setCategory] = useState('general');
   const [contact, setContact] = useState("")
-  const [contactDetails, setContactDetails] = useState(null)
+  const [contactDetails, setContactDetails] = useState("null")
   const [files, setFiles] = useState("")
   const [warning, setWarning] = useState("")
 
@@ -19,13 +19,12 @@ const Post = ( {onCancel, onAddPost } ) => {
         text: postText,
         category: category,
         contact_method:contact,
-        contact_details: contactDetails
+        contact_detail: contactDetails
       }
     ])
 
       if(error) {
-        console.error("Error inserting post: ", error.message)
-        setWarning("Failed to submit the post")
+         setWarning("Failed to submit the post")
         setTimeout(() => setWarning(""), 3000)
       } else {
         setWarning("Post submitted successfully")
