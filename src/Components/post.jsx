@@ -5,7 +5,7 @@ const Post = ( {onCancel, onAddPost } ) => {
   const [postText, setPostText] = useState('');
   const [category, setCategory] = useState('general');
   const [contact, setContact] = useState("")
-  const [contactDetails, setContactDetails] = useState("null")
+  const [contactDetails, setContactDetails] = useState("")
   const [files, setFiles] = useState("")
   const [warning, setWarning] = useState("")
 

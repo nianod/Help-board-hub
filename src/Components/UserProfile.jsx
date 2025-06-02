@@ -3,7 +3,7 @@ import React from 'react'
 const UserProfile = () => {
   return (
     <div>
-      <h3>Your profile</h3>
+      <h2 className='mt-25 text-white font-bold'>Welcome to your profile</h2>
     </div>
   )
 }

@@ -67,11 +67,11 @@ const SeekerDashboard = () => {
 
       <div className="mt-8 space-y-4">
         {loading ? (
-          <p>Loading posts...</p>
+          <p className='text-white'>Loading posts...</p>
         ) : error ? (
           <p className="text-red-500">{error}</p>
         ) : posts.length === 0 ? (
-          <p>No posts yet. Be the first to post!</p>
+          <p className='text-white'>No posts yet. Be the first to post!</p>
         ) : (
           posts.map(post => (
             <div key={post.id} className="border p-4 rounded-lg shadow-sm bg-white">
