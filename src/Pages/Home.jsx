@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div data-aos="zoom-out-up" className="text-center p-8">
       <h1 className="text-4xl font-bold mb-6">Welcome to Help Hub!</h1>
-      <p className="mb-8">Join us as a:</p>
+      <p className="mb-8">Join us as:</p>
       <div className="flex gap-4 justify-center">
         <Link 
           to="/signup?role=helper" 

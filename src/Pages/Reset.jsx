@@ -13,8 +13,8 @@ const Reset = () => {
         event.preventDefault()
     }
   return (
-    <div className='container pb-20'>
-      <form method='Post' onSubmit={handlESubmit} className=' bg-blue-800 gap-1 mt-5 max-w-sm mx-auto p-4 flex flex-col text-white rounded-xl shadow-sm '>
+    <div className=' pb-20'>
+      <form method='Post' onSubmit={handlESubmit} className='container bg-blue-800 gap-1 mt-5 max-w-sm mx-auto p-4 flex flex-col text-white rounded-xl shadow-sm '>
         <h2 className='text-white font-bold text-center text-2xl'> Reset Password</h2>
          <label>Email: </label>
         <input type="email"

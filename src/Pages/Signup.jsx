@@ -70,10 +70,10 @@ const handleSubmit = async (event) => {
 };
 
   return (
-    <div className='container pb-20'>
+    <div className= 'pb-20'>
       <form 
         onSubmit={handleSubmit} 
-        className='bg-blue-800 gap-1 mt-5 max-w-sm mx-auto p-4 flex flex-col text-white rounded-xl shadow-sm'
+        className='container bg-blue-800 gap-1 mt-5 max-w-sm mx-auto p-4 flex flex-col text-white rounded-xl shadow-sm'
       >
         <h2 className='text-white font-bold text-center text-2xl'>Sign Up</h2>
         
