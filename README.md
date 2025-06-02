@@ -22,10 +22,15 @@ This project is perfect for small communities, college campuses, or neighborhood
 
 ## 🔑 Features
 ✅ Role-based authentication (Helper / Help Seeker)
+
 ✅ Real-time data updates with Supabase
+
 ✅ Clean dashboard UI for both user types
+
 ✅ Easy sign-up with email, username, and password
+
 ✅ Login using just username and password
+
 ✅ Built for scalability & future features (like chat, ratings, etc.)
 
  
