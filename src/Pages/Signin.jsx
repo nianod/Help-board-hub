@@ -37,6 +37,7 @@ const handleSubmit = async (event) => {
             navigate('/dashboard/seeker')
         } else {
             navigate('/')
+            console.log(result)
         }
     } else {
         setError( result.error || 'Signing in failed');

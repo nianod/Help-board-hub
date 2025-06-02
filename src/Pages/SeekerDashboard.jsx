@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../libs/supabaseClient'; // Make sure to import supabase
+import { supabase } from '../libs/supabaseClient';  
 import Post from '../Components/post';
 
 const SeekerDashboard = () => {
@@ -8,8 +8,7 @@ const SeekerDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch posts from Supabase on component mount
-  useEffect(() => {
+   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const { data, error } = await supabase
@@ -33,16 +32,14 @@ const SeekerDashboard = () => {
 
   const handleAddPost = async (newPost) => {
     try {
-      // First add to Supabase
-      const { data, error } = await supabase
+       const { data, error } = await supabase
         .from('posts')
         .insert([newPost])
         .select();
 
       if (error) throw error;
 
-      // Then update local state with the post returned from Supabase (includes id)
-      setPosts([data[0], ...posts]);
+       setPosts([data[0], ...posts]);
       setShowPostModal(false);
     } catch (err) {
       console.error('Error adding post:', err);
@@ -79,7 +76,7 @@ const SeekerDashboard = () => {
           posts.map(post => (
             <div key={post.id} className="border p-4 rounded-lg shadow-sm bg-white">
               <h3 className="font-bold text-lg capitalize">{post.category}</h3>
-              <p className="mt-2 text-gray-700">{post.text}</p> {/* Changed from postText to text */}
+              <p className="mt-2 text-gray-700">{post.text}</p>  
               {post.contact_method && (
                 <small className="block mt-2 text-gray-500">
                   Contact via: {post.contact_method} - {post.contact_details}

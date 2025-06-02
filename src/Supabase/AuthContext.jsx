@@ -30,17 +30,22 @@ export const AuthContextProvider = ({ children }) => {
             const { data, error } = await supabase.auth.signInWithPassword({
                 email,
                 password,
-                username
+                options : {
+                    data: {
+                        username,
+                    }
+                }
             })
             if(error) {
                 console.error("An error occurred", error);
                 return{ success: false, error: error.message }
             }
             console.log("success", data)
-            return{ success: true, data }
+            return{ success: true, user: data.user }
 
         } catch(error) {
-            console.error("An error occurred")
+            console.error("An error occurred", error)
+            return{ success:false, error: error.message}
         }
     }
 
