@@ -1,12 +1,11 @@
-import React from 'react'
-import { userAuth } from '..supabase/AuthContext'
-import { Navigate } from 'react-router-dom'
+import React from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { UserAuth } from '../Supabase/AuthContext';
 
-const PrivateRouter = ({ children }) => {
-  const { session } = userAuth()
-  return (
-    <>{session ? <>{children}</> :<Navigate to="/signup" />} </>
-  )
-}
+const PrivateRouter = () => {
+  const { session } = UserAuth();
 
-export default PrivateRouter
+  return session ? <Outlet /> : <Navigate to="/signup" />;
+};
+
+export default PrivateRouter;

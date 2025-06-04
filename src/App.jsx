@@ -12,6 +12,7 @@ import HelperDashboard from './Pages/HelperDashboard';
 import SeekerDashboard from './Pages/SeekerDashboard';
 import UserProfile from './Components/UserProfile';
 import Notice from './Components/404';
+import PrivateRouter from './Components/PrivateRouter';
 import { AuthContextProvider } from './Supabase/AuthContext';
 
 function App() {
@@ -32,12 +33,14 @@ function App() {
           <Route path="/login" element={<Signin />} />
           <Route path="/reset" element={<Reset />} />
         </Route>
+        <Route element={<PrivateRouter />} >
         <Route element={<Layout />}>
           <Route path="/dashboard/helper" element={<HelperDashboard />} />
           <Route path="/dashboard/seeker" element={<SeekerDashboard />} />
           <Route path='/userProfile' element={<UserProfile />} />
           <Route path='/404' element={<Notice />} />
          </Route>
+        </Route> 
       </Routes>
     </Router>
     </AuthContextProvider> 
