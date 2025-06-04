@@ -18,7 +18,8 @@ import { UserAuth } from '../Supabase/AuthContext';
 const handleSubmit = async (event) => {
   event.preventDefault();
   setError("");
-
+    setLoading(true)
+    
   if (password.length < 6) {
     setError("Password must be at least 6 characters");
     return;
