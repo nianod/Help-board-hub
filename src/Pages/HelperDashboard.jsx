@@ -1,5 +1,7 @@
-import React from 'react'
-// coming soon
+import SeekerDashboard from './SeekerDashboard'
+import Post from '../Components/post'
+
+
 const HelperDashboard = () => {
   return (
     <div className='bg-blue-500 mt-20'>

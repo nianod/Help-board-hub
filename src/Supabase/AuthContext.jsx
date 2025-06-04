@@ -40,7 +40,7 @@ export const AuthContextProvider = ({ children }) => {
                 console.error("An error occurred", error);
                 return{ success: false, error: error.message }
             }
-            console.log("success", data)
+            //console.log("success", data)
             return{ success: true, user: data.user }
 
         } catch(error) {

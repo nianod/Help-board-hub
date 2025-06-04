@@ -29,16 +29,19 @@ const handleSubmit = async (event) => {
 
 
     if(result.success) {
+        console.log('Authentication success. Role:', role)  
         setError("")
-        if(role === 'helper') {
+        const storedRole = localStorage.getItem('role')
+        if(storedRole === 'helper') {
             navigate('/dashboard/helper')
-            localStorage.getItem('role', 'helper')
-        } else if(role === 'seeker') {
+            // localStorage.getItem('role', 'helper')
+        } else if(storedRole === 'seeker') {
             navigate('/dashboard/seeker')
+            // localStorage.getItem('role', 'seeker')
         } else {
             navigate('/')
-            console.log(result)
         }
+        console.log(`The role is ${localStorage.getItem('role')}`)  
     } else {
         setError( result.error || 'Signing in failed');
     }
