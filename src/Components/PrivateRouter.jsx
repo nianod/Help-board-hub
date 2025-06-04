@@ -1,10 +1,11 @@
 import React from 'react'
+import { userAuth } from '..supabase/AuthContext'
+import { Navigate } from 'react-router-dom'
 
-const PrivateRouter = () => {
+const PrivateRouter = ({ children }) => {
+  const { session } = userAuth()
   return (
-    <div>
-      
-    </div>
+    <>{session ? <>{children}</> :<Navigate to="/signup" />} </>
   )
 }
 
