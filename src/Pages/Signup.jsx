@@ -160,7 +160,7 @@ const handleSubmit = async (event) => {
           type="submit"
           className='bg-blue-300 p-2 mt-5 font-bold rounded text-xl cursor-pointer transition-colors'
         >
-          Register
+         {loading ? "Signing up ..." : "Sign up"}
         </button>
 
         <p className='flex justify-center gap-1 mt-2'>

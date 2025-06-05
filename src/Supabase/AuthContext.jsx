@@ -5,7 +5,7 @@ const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
     const [session, setSession] = useState(undefined)
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     //Sign up 
     const registerNewUser = async (email, username, password) => {
@@ -25,7 +25,25 @@ export const AuthContextProvider = ({ children }) => {
         return{success: true, data}
     }
     
-    useEffect
+        useEffect(() => {
+        const getSession = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            setSession(session) 
+            setLoading(false)
+        };
+
+        getSession()
+
+        const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+            setSession(session);
+        })
+
+        return () => {
+            data?.subscription?.unsubscribe();  
+        }
+
+        }, []);
+
 
     //Sign in
     const SignIn = async ( email, username, password ) => {
@@ -43,7 +61,6 @@ export const AuthContextProvider = ({ children }) => {
                 console.error("An error occurred", error);
                 return{ success: false, error: error.message }
             }
-            //console.log("success", data)
             return{ success: true, user: data.user }
 
         } catch(error) {
@@ -51,7 +68,6 @@ export const AuthContextProvider = ({ children }) => {
             return{ success:false, error: error.message}
         }
     }
-
 
     useEffect(() => {
         supabase.auth.getSession().then(({ data: { session } }) => {
@@ -75,7 +91,7 @@ export const AuthContextProvider = ({ children }) => {
     }
 
     return(
-       <AuthContext.Provider value={{ session,SignIn,  registerNewUser, signOut }}> { children} </AuthContext.Provider>
+       <AuthContext.Provider value={{ session,SignIn, loading,  registerNewUser, signOut }}> { children} </AuthContext.Provider>
     )
 }
 export const UserAuth = () => {
