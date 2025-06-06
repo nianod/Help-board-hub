@@ -3,7 +3,7 @@ import { supabase } from '../libs/supabaseClient';
 
 const Post = ( {onCancel, onAddPost } ) => {
   const [postText, setPostText] = useState('');
-  const [category, setCategory] = useState('general');
+  const [category, setCategory] = useState('');
   const [contact, setContact] = useState("")
   const [contactDetails, setContactDetails] = useState("")
   const [files, setFiles] = useState("")
@@ -27,7 +27,9 @@ const Post = ( {onCancel, onAddPost } ) => {
 
 
         if(error) {
-          console.log(error)
+          console.log(error.message)
+          console.log("before insertting data", postText, category, contact, contactDetails)
+          console.log("insertted data", data)
           setWarning("Failed to submit the post")
         } else {
           onAddPost(data[0])
@@ -35,12 +37,16 @@ const Post = ( {onCancel, onAddPost } ) => {
           setPostText('');
           setContact("")
           setContactDetails("")
-          setCategory('general');
+          setCategory('');
         }
       } catch(err) {
             console.error("Error inserting post: ", err.message);
             setWarning("Failed to submit the post");
+            console.error("hello")
       }    
+
+
+   
 
     const newPost = {
       id: Date.now(), 
@@ -81,12 +87,12 @@ const Post = ( {onCancel, onAddPost } ) => {
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="" disabled>Select a category</option>
-            <option value="general">Tech</option>
+            <option value="Tech">Tech</option>
             <option value="Health">Health</option>
             <option value="Electronics">Electronics</option>
             <option value="Academic">Academic</option>
             <option value="Errands">Errands</option>
-            <option value="General">General</option>
+            {/* <option value="General">General</option> */}
           </select>
         </div>
         <div className='mt-4 mb-4'>
