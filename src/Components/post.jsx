@@ -48,13 +48,13 @@ const Post = ( {onCancel, onAddPost } ) => {
 
    
 
-    const newPost = {
-      id: Date.now(), 
-      postText,
-      category,
-      contact,
-      contactDetails
-    }
+    // const newPost = {
+    //   id: Date.now(), 
+    //   postText,
+    //   category,
+    //   contact,
+    //   contactDetails
+    // }
    };
 
   return (
