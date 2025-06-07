@@ -14,15 +14,13 @@ const Post = ( {onCancel, onAddPost } ) => {
     e.preventDefault();
  
     try {
-      
-      const { data, error } = await supabase.from('posts').insert([
-        {
-          text: postText,
-          category: category,
-          contact_method: contact,
-          contact_detail: contactDetails
-        }
-      ])
+      const dataToBeInserted = {
+        text: postText,
+        category: category,
+        contact_method: contact,
+        contact_detail: contactDetails
+      }
+      const { data, error } = await supabase.from('posts').insert([dataToBeInserted]).single()
       .select();  
 
 
@@ -46,15 +44,9 @@ const Post = ( {onCancel, onAddPost } ) => {
       }    
 
 
-   
+  
 
-    // const newPost = {
-    //   id: Date.now(), 
-    //   postText,
-    //   category,
-    //   contact,
-    //   contactDetails
-    // }
+   
    };
 
   return (
