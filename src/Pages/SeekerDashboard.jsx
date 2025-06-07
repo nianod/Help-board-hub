@@ -48,7 +48,7 @@ const SeekerDashboard = () => {
   };
 
   return (
-    <div className="relative min-h-screen p-4">
+    <div className="relative min-h-screen p-4 pb-25">
       <button
         onClick={() => setShowPostModal(true)}
         className="p-3 bg-red-400 rounded mt-20 m-4 cursor-pointer font-bold hover:bg-red-500 transition-colors"

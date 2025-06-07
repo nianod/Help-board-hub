@@ -44,18 +44,14 @@ const Post = ( {onCancel, onAddPost } ) => {
           setPostText('');
           setContact("")
           setContactDetails("")
-          setCategory('');
+          setCategory('')
+          oncancel()
         }
       } catch(err) {
             console.error("Error inserting post: ", err.message);
             setWarning("Failed to submit the post");
             console.error("hello")
-      }    
-
-
-  
-
-   
+      }      
    };
 
   return (
@@ -144,7 +140,8 @@ const Post = ( {onCancel, onAddPost } ) => {
           </button>
           <button
             type='submit'
-           className=" cursor-pointer rounded-md bg-blue-900 text-white w-20 p-1 font-bold"
+            
+           className= {`cursor-pointer rounded-md bg-blue-900 text-white w-20 p-1 font-bold ${loading? 'opacity-50 cursor-not-allowed' : ""}`}
           >
             {loading ? "Posting..." : "Post"}
         </button>
