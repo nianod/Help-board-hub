@@ -8,17 +8,23 @@ const Post = ( {onCancel, onAddPost } ) => {
   const [contactDetails, setContactDetails] = useState("")
   const [files, setFiles] = useState("")
   const [warning, setWarning] = useState("")
+  const [loading, setLoading] = useState(false)
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
  
     try {
+      const {
+        data: { user }
+      } = await supabase.auth.getUser()
       const dataToBeInserted = {
         text: postText,
         category: category,
         contact_method: contact,
-        contact_detail: contactDetails
+        contact_detail: contactDetails,
+        user_id: user.id
       }
       const { data, error } = await supabase
       .from('postst')
@@ -33,7 +39,7 @@ const Post = ( {onCancel, onAddPost } ) => {
           console.log("insertted data", data)
           setWarning("Failed to submit the post")
         } else {
-          onAddPost(data[0])
+          onAddPost(data)
           setWarning("Post submitted successfully")
           setPostText('');
           setContact("")
@@ -140,7 +146,7 @@ const Post = ( {onCancel, onAddPost } ) => {
             type='submit'
            className=" cursor-pointer rounded-md bg-blue-900 text-white w-20 p-1 font-bold"
           >
-            Post
+            {loading ? "Posting..." : "Post"}
         </button>
         </div>
       </form>
