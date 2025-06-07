@@ -12,7 +12,7 @@ const SeekerDashboard = () => {
     const fetchPosts = async () => {
       try {
         const { data, error } = await supabase
-          .from('posts')
+          .from('postst')
           .select('*')
           .order('created_at', { ascending: false });
 
@@ -33,7 +33,7 @@ const SeekerDashboard = () => {
   const handleAddPost = async (newPost) => {
     try {
        const { data, error } = await supabase
-        .from('posts')
+        .from('postst')
         .insert([newPost])
         .select();
 

@@ -20,8 +20,11 @@ const Post = ( {onCancel, onAddPost } ) => {
         contact_method: contact,
         contact_detail: contactDetails
       }
-      const { data, error } = await supabase.from('posts').insert([dataToBeInserted]).single()
-      .select();  
+      const { data, error } = await supabase
+      .from('postst')
+      .insert([dataToBeInserted])
+      .select()
+      .single()
 
 
         if(error) {
