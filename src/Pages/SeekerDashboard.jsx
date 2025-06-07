@@ -29,7 +29,9 @@ const SeekerDashboard = () => {
 
     fetchPosts();
   }, []);
-
+  // const handlepost = (e) {
+  //   e.preventDefault()
+  // }
   const handleAddPost = async (newPost) => {
     try {
        const { data, error } = await supabase
@@ -74,7 +76,7 @@ const SeekerDashboard = () => {
           <p className='text-white'>No posts yet. Be the first to post!</p>
         ) : (
           posts.map(post => (
-            <div key={post.id} className="border p-4 rounded-lg shadow-sm bg-white">
+            <div  key={post.id} className="border p-4 rounded-lg shadow-sm bg-white">
               <h3 className="font-bold text-lg capitalize">{post.category}</h3>
               <p className="mt-2 text-gray-700">{post.text}</p>  
               {post.contact_method && (
@@ -87,6 +89,10 @@ const SeekerDashboard = () => {
                   Posted on: {new Date(post.created_at).toLocaleString()}
                 </small>
               )}
+              <div className='flex gap-1 justify-end  '>
+                <button className='p-1 rounded bg-blue-800 text-white cursor-pointer'>View</button>
+                <button className='p-1 rounded bg-red-800 text-white cursor-pointer'>Delete</button>
+              </div>
             </div>
           ))
         )}
