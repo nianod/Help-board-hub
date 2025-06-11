@@ -1,4 +1,3 @@
-import PrivateRouter from '../Components/PrivateRouter';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import React, { useState } from 'react';
