@@ -32,7 +32,7 @@ const View = () => {
       <p>Author: {post.user_name}</p>
       <p className="text-sm text-gray-500">Contact via: {post.contact_method} - {post.contact_detail}</p>
       <p className="text-sm text-gray-400 mt-2">Posted on: {new Date(post.created_at).toLocaleString()}</p>
-      <span onClick={handleBack} className='flex items-center gap-0.5'><FaBackward/> back </span>
+      <button onClick={handleBack} className='flex items-center gap-0.5 bg-blue-500 p-1 rounded mt-5 cursor-pointer hover:bg-blue-600'><FaBackward /> Back </button>
     </div>
   )
 }
