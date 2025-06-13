@@ -29,14 +29,28 @@ const SeekerDashboard = () => {
 
     fetchPosts();
   }, []);
-  // const handlepost = (e) => {
-  //   e.preventDefault()
-  // }
+
   const handleAddPost = (newPost) => {
        setPosts(prevPosts => [newPost, ...prevPosts]);
       setShowPostModal(false);
-  
-  };
+  }
+
+      //Delete post
+      const deletePost = async(postId) => {
+        try {
+          const { error } = await supabase
+          .from('postst')
+          .delete()
+          .eq('id', postId)
+          if (error) throw error
+
+          setPosts(prevPosts => prevPosts.filter(post => post.id !== postId))
+
+        } catch (err) {
+          console.error("An error occurred", err.message)
+          setError("Failed to  delete poat")
+        }
+      }  
 
   return (
     <div className="relative min-h-screen p-4 pb-25">
@@ -79,8 +93,8 @@ const SeekerDashboard = () => {
                 </small>
               )}
               <div className='flex gap-1 justify-end  '>
-                <button className='p-1 rounded bg-blue-800 text-white cursor-pointer'>View</button>
-                <button className='p-1 rounded bg-red-800 text-white cursor-pointer'>Delete</button>
+                <button  className='p-1 rounded bg-blue-800 text-white cursor-pointer'>View</button>
+                <button onClick={() => deletePost(post.id)} className='p-1 rounded bg-red-800 text-white cursor-pointer'>Delete</button>
               </div>
             </div>
           ))
