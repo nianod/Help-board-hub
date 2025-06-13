@@ -36,22 +36,25 @@ const Post = ( {onCancel, onAddPost } ) => {
         if(error) {
           console.log(error.message)
           console.log("before insertting data", postText, category, contact, contactDetails)
-          console.log("insertted data", data)
           setWarning("Failed to submit the post")
         } else {
+          console.log("Insertted adata", data)
           onAddPost(data)
           setWarning("Post submitted successfully")
-          setPostText('');
+          setPostText('')
           setContact("")
           setContactDetails("")
           setCategory('')
-          oncancel()
+          onCancel()
+          
         }
       } catch(err) {
             console.error("Error inserting post: ", err.message);
             setWarning("Failed to submit the post");
-            console.error("hello")
-      }      
+            
+      } finally {
+        setLoading(false)
+      } 
    };
 
   return (
@@ -140,9 +143,9 @@ const Post = ( {onCancel, onAddPost } ) => {
           </button>
           <button
             type='submit'
-            
-           className= {`cursor-pointer rounded-md bg-blue-900 text-white w-20 p-1 font-bold ${loading? 'opacity-50 cursor-not-allowed' : ""}`}
-          >
+            disabled={loading}
+           className= {`cursor-pointer rounded-md bg-blue-900 text-white w-20 p-1 font-bold ${loading? 'opacity-50 cursor-not-allowed' : 'bg-blue-900 hover:bg-blue-800 cursor-not-allowed'}`}
+          > 
             {loading ? "Posting..." : "Post"}
         </button>
         </div>

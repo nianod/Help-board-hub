@@ -29,24 +29,13 @@ const SeekerDashboard = () => {
 
     fetchPosts();
   }, []);
-  const handlepost = (e) => {
-    e.preventDefault()
-  }
-  const handleAddPost = async (newPost) => {
-    try {
-       const { data, error } = await supabase
-        .from('postst')
-        .insert([newPost])
-        .select();
-
-      if (error) throw error;
-
-       setPosts([data[0], ...posts]);
+  // const handlepost = (e) => {
+  //   e.preventDefault()
+  // }
+  const handleAddPost = (newPost) => {
+       setPosts(prevPosts => [newPost, ...prevPosts]);
       setShowPostModal(false);
-    } catch (err) {
-      console.error('Error adding post:', err);
-      setError('Failed to add post');
-    }
+  
   };
 
   return (
@@ -76,7 +65,7 @@ const SeekerDashboard = () => {
           <p className='text-white'>No posts yet. Be the first to post!</p>
         ) : (
           posts.map(post => (
-            <div onmanipulate={handlepost} key={post.id} className="border p-4 rounded-lg shadow-sm bg-white">
+            <div key={post.id} className="border p-4 rounded-lg shadow-sm bg-white">
               <h3 className="font-bold text-lg capitalize">{post.category}</h3>
               <p className="mt-2 text-gray-700">{post.text}</p>  
               {post.contact_method && (
