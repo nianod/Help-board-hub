@@ -9,6 +9,7 @@ const Post = ( {onCancel, onAddPost } ) => {
   const [files, setFiles] = useState("")
   const [warning, setWarning] = useState("")
   const [loading, setLoading] = useState(false)
+  const [name, setName] = useState("")
 
 
   const handleSubmit = async (e) => {
@@ -24,6 +25,7 @@ const Post = ( {onCancel, onAddPost } ) => {
         category: category,
         contact_method: contact,
         contact_detail: contactDetails,
+        user_name: name,
         user_id: user.id
       }
       const { data, error } = await supabase
@@ -45,6 +47,7 @@ const Post = ( {onCancel, onAddPost } ) => {
           setContact("")
           setContactDetails("")
           setCategory('')
+          setName("")
           onCancel()
           
         }
@@ -61,6 +64,20 @@ const Post = ( {onCancel, onAddPost } ) => {
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mb-20 mt-20 overflow-y-auto max-h-[600px]">
       <h2 className="text-2xl font-bold text-center mb-6">Post New Update</h2>
       <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-black mb-2">
+            Username
+          </label>
+          <input
+            type='text'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            rows="4"
+            placeholder="enter your name"
+            required
+          />
+        </div>
         <div className="mb-4">
           <label className="block text-sm font-medium text-black mb-2">
             Describe your Issue

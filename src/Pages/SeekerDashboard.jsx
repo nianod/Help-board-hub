@@ -89,8 +89,9 @@ const SeekerDashboard = () => {
             <div key={post.id} className="border p-4 rounded-lg shadow-sm bg-white">
               <h3 className="font-bold text-lg capitalize">Category: {post.category}</h3>
               <p className="mt-2 text-gray-700">{post.text}</p>  
+              <p className='mt-2'>Posted by: {post.user_name}</p>
               {post.contact_method && (
-                <small className="block mt-2 text-gray-500">
+                <small className="block mt-1 text-gray-500">
                   Contact via: {post.contact_method} - {post.contact_details}
                 </small>
               )}
