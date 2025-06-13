@@ -1,12 +1,27 @@
-import { useLocation } from 'react-router-dom';
-import { FaBackward } from 'react-icons/fa';
+import { useLocation, useNavigate } from 'react-router-dom'
+import { FaBackward } from 'react-icons/fa'
+import { useState } from 'react'
 
 const View = () => {
-  const location = useLocation();
-  const post = location.state?.post;
+  const location = useLocation()
+  const post = location.state?.post
+  //const [error, setError] = useState(false)
+
+  const navigate = useNavigate()
+
+  const storedRole = localStorage.getItem('role')
+  const handleBack = () => {
+     if(storedRole === 'helper') {
+        navigate('/dashboard/helper')
+    } else if(storedRole === 'seeker') {
+    navigate('/dashboard/seeker')
+    } else {
+        console.log("location not found")
+    }
+  }
 
   if (!post) {
-    return <p className="text-center text-red-500">No post data found!</p>;
+    return <p className="text-center text-red-500">No post data found!</p>
   }
 
   return (
@@ -17,9 +32,9 @@ const View = () => {
       <p>Author: {post.user_name}</p>
       <p className="text-sm text-gray-500">Contact via: {post.contact_method} - {post.contact_detail}</p>
       <p className="text-sm text-gray-400 mt-2">Posted on: {new Date(post.created_at).toLocaleString()}</p>
-      <span className='flex items-center gap-0.5'><FaBackward/> back </span>
+      <span onClick={handleBack} className='flex items-center gap-0.5'><FaBackward/> back </span>
     </div>
-  );
-};
+  )
+}
 
-export default View;
+export default View
