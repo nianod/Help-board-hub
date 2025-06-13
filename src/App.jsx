@@ -1,5 +1,5 @@
-import { useEffect} from 'react'
-import AOS from 'aos'
+import { useEffect} from 'react';
+import AOS from 'aos';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Layout from './Components/Layout';
@@ -8,6 +8,7 @@ import Home from './Pages/Home';
 import SignUp from './Pages/Signup';
 import Signin from './Pages/Signin';
 import Reset from './Pages/Reset';
+import View from './Components/View';
 import HelperDashboard from './Pages/HelperDashboard';
 import SeekerDashboard from './Pages/SeekerDashboard';
 import UserProfile from './Components/UserProfile';
@@ -39,6 +40,7 @@ function App() {
           <Route path="/dashboard/seeker" element={<SeekerDashboard />} />
           <Route path='/userProfile' element={<UserProfile />} />
           <Route path='/404' element={<Notice />} />
+          <Route path= '/view' element={<View />} />
          </Route>
         </Route> 
       </Routes>

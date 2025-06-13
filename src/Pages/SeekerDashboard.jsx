@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../libs/supabaseClient';  
 import Post from '../Components/post';
+import { useNavigate } from 'react-router-dom'
 
 const SeekerDashboard = () => {
   const [showPostModal, setShowPostModal] = useState(false);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate()
 
    useEffect(() => {
     const fetchPosts = async () => {
@@ -52,6 +55,10 @@ const SeekerDashboard = () => {
         }
       }  
 
+      //View POst 
+      const viewPost = (post) => {
+        navigate('/view', { state: { post }})
+      }
   return (
     <div className="relative min-h-screen p-4 pb-25">
       <button
@@ -80,7 +87,7 @@ const SeekerDashboard = () => {
         ) : (
           posts.map(post => (
             <div key={post.id} className="border p-4 rounded-lg shadow-sm bg-white">
-              <h3 className="font-bold text-lg capitalize">{post.category}</h3>
+              <h3 className="font-bold text-lg capitalize">Category: {post.category}</h3>
               <p className="mt-2 text-gray-700">{post.text}</p>  
               {post.contact_method && (
                 <small className="block mt-2 text-gray-500">
@@ -93,8 +100,8 @@ const SeekerDashboard = () => {
                 </small>
               )}
               <div className='flex gap-1 justify-end  '>
-                <button  className='p-1 rounded bg-blue-800 text-white cursor-pointer'>View</button>
-                <button onClick={() => deletePost(post.id)} className='p-1 rounded bg-red-800 text-white cursor-pointer'>Delete</button>
+                <button onClick={() => viewPost(post)} className='p-1 rounded bg-blue-800 text-white cursor-pointer hover:bg-blue-700'>View</button>
+                <button onClick={() => deletePost(post.id)} className='p-1 rounded bg-red-800 text-white cursor-pointer hover:bg-red-700'>Delete</button>
               </div>
             </div>
           ))
