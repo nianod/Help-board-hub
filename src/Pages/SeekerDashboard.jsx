@@ -111,7 +111,13 @@ const SeekerDashboard = () => {
                 )}
                 <div className='gap-2 flex'>
                   <button onClick={() => viewPost(post)} className='p-1 rounded bg-blue-800 text-white cursor-pointer hover:bg-blue-700'>View</button>
-                  <button onClick={() => deletePost(post.id)} className='p-1 rounded bg-red-800 text-white cursor-pointer hover:bg-red-700'>Delete</button>
+                  <button
+                   onClick={!post.accepted_by? () => deletePost(post.id) : undefined} 
+                   disabled={!!post.accepted_by} 
+                   className={`p-1 rounded text-white  ${post.accepted_by ? 'bg-gray-400 cursor-not-allowed' : 'bg-red-800 hover:bg-red-700 cursor-pointer' }`}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             </div>

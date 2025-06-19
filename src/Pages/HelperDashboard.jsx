@@ -6,6 +6,7 @@ const HelperDashboard = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+    const [loadingAccept, setLoadingAccept] = useState(false)
 
   const navigate = useNavigate()
 
@@ -96,7 +97,7 @@ const HelperDashboard = () => {
               ) : (
               <div className='flex gap-1 justify-end  '>
                 <button onClick={() => viewPost(post)} className='p-1 rounded bg-blue-800 text-white cursor-pointer hover:bg-blue-700'>View</button>
-                <button onClick={() => acceptPost(post.id)} className='p-1 rounded bg-green-800 text-white cursor-pointer hover:bg-green-700'>Accept</button>
+                <button onClick={() => acceptPost(post.id)} className='p-1 rounded bg-green-800 text-white cursor-pointer hover:bg-green-700'>{load}</button>
               </div>
               )}
             </div>
