@@ -34,8 +34,17 @@ const HelperDashboard = () => {
  
 
       //Accept post
-      const acceptPost = async() => {
+      const acceptPost = async(postId) => {
         alert("Accepted")
+        const {data: { user } } = await supabase.auth.getUser()
+
+        const { error } = await supabase 
+        .from('postst')
+        .update({ accepted_by: user.id })
+        .eq('id', postId)
+      
+        if
+        
       }  
 
       //View POst 
