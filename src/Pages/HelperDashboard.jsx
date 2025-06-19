@@ -35,25 +35,27 @@ const HelperDashboard = () => {
 
       //Accept post
       const acceptPost = async(postId) => {
-        alert("Accepted")
+       
         const {data: { user } } = await supabase.auth.getUser()
+
+      if(!user?.email) {
+        console.log('no user email found')
+      }
 
         const { error } = await supabase 
         .from('postst')
-        .update({ accepted_by: user.id })
+        .update({ accepted_by: user.email })
         .eq('id', postId)
       
         if(error) {
-          console.log("there was an error", error);
+          console.log("there was an error here brother", error);
           
-        } else {
-          console.log("Accepted")
-        }
+        } 
 
          //Disable Accepted Post
           setPosts((prev) => 
           prev.map((post) =>
-            post.id === postId ? { ...post, accepted_by: user.id} :post
+            post.id === postId ? { ...post, accepted_by: user.email} :post
           ))
         
       }  
