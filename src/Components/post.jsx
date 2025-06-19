@@ -1,64 +1,66 @@
-import { useState } from 'react';
-import { supabase } from '../libs/supabaseClient';
+import { useState } from "react";
+import { supabase } from "../libs/supabaseClient";
 
-const Post = ( {onCancel, onAddPost } ) => {
-  const [postText, setPostText] = useState('');
-  const [category, setCategory] = useState('');
-  const [contact, setContact] = useState("")
-  const [contactDetails, setContactDetails] = useState("")
-  const [files, setFiles] = useState("")
-  const [warning, setWarning] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [name, setName] = useState("")
-
+const Post = ({ onCancel, onAddPost }) => {
+  const [postText, setPostText] = useState("");
+  const [category, setCategory] = useState("");
+  const [contact, setContact] = useState("");
+  const [contactDetails, setContactDetails] = useState("");
+  const [files, setFiles] = useState("");
+  const [warning, setWarning] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [name, setName] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true)
- 
+    setLoading(true);
+
     try {
-      const {
-        data: { user }
-      } = await supabase.auth.getUser()
+      const { data: { user } } = await supabase.auth.getUser()
+
       const dataToBeInserted = {
         text: postText,
         category: category,
         contact_method: contact,
         contact_detail: contactDetails,
         user_name: name,
-        user_id: user.id
-      }
+        user_id: user.id,
+      };
+
       const { data, error } = await supabase
-      .from('postst')
-      .insert([dataToBeInserted])
-      .select()
-      .single()
+        .from("postst")
+        .insert([dataToBeInserted])
+        .select()
+        .single()
 
-
-        if(error) {
-          console.log(error.message)
-          console.log("before insertting data", postText, category, contact, contactDetails)
-          setWarning("Failed to submit the post")
-        } else {
-          console.log("Insertted adata", data)
-          onAddPost(data)
-          setWarning("Post submitted successfully")
-          setPostText('')
-          setContact("")
-          setContactDetails("")
-          setCategory('')
-          setName("")
-          onCancel()
-          
-        }
-      } catch(err) {
-            console.error("Error inserting post: ", err.message);
-            setWarning("Failed to submit the post");
-            
-      } finally {
-        setLoading(false)
-      } 
-   };
+      if (error) {
+        console.log(error.message);
+        console.log(
+          "before insertting data",
+          postText,
+          category,
+          contact,
+          contactDetails
+        );
+        setWarning("Failed to submit the post");
+      } else {
+        console.log("Insertted adata", data);
+        onAddPost(data);
+        setWarning("Post submitted successfully");
+        setPostText("");
+        setContact("");
+        setContactDetails("");
+        setCategory("");
+        setName("");
+        onCancel();
+      }
+    } catch (err) {
+      console.error("Error inserting post: ", err.message);
+      setWarning("Failed to submit the post");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mb-20 mt-20 overflow-y-auto max-h-[600px]">
@@ -69,7 +71,7 @@ const Post = ( {onCancel, onAddPost } ) => {
             Username
           </label>
           <input
-            type='text'
+            type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -91,56 +93,65 @@ const Post = ( {onCancel, onAddPost } ) => {
             required
           />
         </div>
-        
+
         <div className="mb-1">
           <label className="block text-sm font-medium text-black mb-2">
             Category
           </label>
           <select
-          required
+            required
             id="category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <option value="" disabled>Select a category</option>
+            <option value="" disabled>
+              Select a category
+            </option>
             <option value="Tech">Tech</option>
             <option value="Health">Health</option>
             <option value="Electronics">Electronics</option>
             <option value="Academic">Academic</option>
             <option value="Errands">Errands</option>
-            {/* <option value="General">General</option> */}
           </select>
         </div>
-        <div className='mt-4 mb-4'>
-          <label className='block text-sm font-medium text-black mb-2' >
-            How can people contact you</label>
-            <select id="contact"
-            className='w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 border-gray-300'
+        <div className="mt-4 mb-4">
+          <label className="block text-sm font-medium text-black mb-2">
+            How can people contact you
+          </label>
+          <select
+            id="contact"
+            className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 border-gray-300"
             value={contact}
-             onChange={(e) => setContact(e.target.value)}
-            >
-              <option value="" disabled>Choose contact method</option>
-              <option value="Email">Email</option>
-              <option value="SMS">SMS</option>
-              <option value="Call">Call</option>
-              <option value="Whatsapp">Whatsapp</option>
-            </select>
-            {contact && (
-              <div className='mt-4 mb-4'>
-                <label className='block text-sm font-medium'>
-                  Enter your {contact === 'Email' ? 'Email address' : 'Phone number'}
-                </label>
-                <input type={contact === 'Email' ? 'email' : 'tel'} 
-                  required
-                  value={contactDetails}
-                  onChange={(e) =>setContactDetails(e.target.value) }
-                  className='w-full p-3 mt-2 border border-gray-300 focus:outline-none rounded-md focus:ring-blue-500 focus:ring-2'
-                />
-              </div>
-            )}
+            onChange={(e) => setContact(e.target.value)}
+          >
+            <option value="" disabled>
+              Choose contact method
+            </option>
+            <option value="Email">Email</option>
+            <option value="SMS">SMS</option>
+            <option value="Call">Call</option>
+            <option value="Whatsapp">Whatsapp</option>
+          </select>
+          {contact && (
+            <div className="mt-4 mb-4">
+              <label className="block text-sm font-medium">
+                Enter your{" "}
+                {contact === "Email" ? "Email address" : "Phone number"}
+              </label>
+              <input
+                type={contact === "Email" ? "email" : "tel"}
+                required
+                value={contactDetails}
+                onChange={(e) => setContactDetails(e.target.value)}
+                className="w-full p-3 mt-2 border border-gray-300 focus:outline-none rounded-md focus:ring-blue-500 focus:ring-2"
+              />
+            </div>
+          )}
         </div>
-        <label className="block mb-2 text-black text-sm font-medium">Upload Image <span className='text-gray-400'>(optional)</span></label> 
+        <label className="block mb-2 text-black text-sm font-medium">
+          Upload Image <span className="text-gray-400">(optional)</span>
+        </label>
         <input
           type="file"
           onChange={(e) => setFiles(e.target.value)}
@@ -148,9 +159,12 @@ const Post = ( {onCancel, onAddPost } ) => {
           className="bg-blue-400 p-2 rounded"
         />
         {warning && (
-          <p className='text-red-500 mt-3 flex items-center justify-center'> {warning} </p>
+          <p className="text-red-500 mt-3 flex items-center justify-center">
+            {" "}
+            {warning}{" "}
+          </p>
         )}
-        <div className='flex gap-3 mt-5'>
+        <div className="flex gap-3 mt-5">
           <button
             type="button"
             onClick={onCancel}
@@ -159,12 +173,16 @@ const Post = ( {onCancel, onAddPost } ) => {
             Cancel
           </button>
           <button
-            type='submit'
+            type="submit"
             disabled={loading}
-           className= {`cursor-pointer rounded-md bg-blue-900 text-white w-20 p-1 font-bold ${loading? 'opacity-50 cursor-not-allowed' : 'bg-blue-900 hover:bg-blue-800 cursor-not-allowed'}`}
-          > 
+            className={`cursor-pointer rounded-md bg-blue-900 text-white w-20 p-1 font-bold ${
+              loading
+                ? "opacity-50 cursor-not-allowed"
+                : "bg-blue-900 hover:bg-blue-800 cursor-not-allowed"
+            }`}
+          >
             {loading ? "Posting..." : "Post"}
-        </button>
+          </button>
         </div>
       </form>
     </div>

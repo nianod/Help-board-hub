@@ -12,7 +12,7 @@ const LogoutConfirmation = ({ onConfirm, onCancel }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default LogoutConfirmation;

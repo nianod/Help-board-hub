@@ -8,14 +8,14 @@ import { UserAuth } from '../Supabase/AuthContext';
 const navContentes = {
   imag: "/download.jpg",
   title: "Help Hub"
-};
+}
 
 const Header = () => {
   const [sideMenu, setSideMenu] = useState(false);
-  const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
-  const navigate = useNavigate();  
-  const menuRef = useRef(null);
-  const userIconRef = useRef(null);  
+  const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false)
+  const navigate = useNavigate()
+  const menuRef = useRef(null)
+  const userIconRef = useRef(null)  
 
   const { session, signOut } = UserAuth()
 
@@ -27,38 +27,39 @@ const Header = () => {
         userIconRef.current &&
         !userIconRef.current.contains(event.target)
       ) {
-        setSideMenu(false);
+        setSideMenu(false)
       }
-    };
-    document.addEventListener("mousedown", clickOutside);
-    return () => document.removeEventListener("mousedown", clickOutside);
-  }, []);
+    }
+    document.addEventListener("mousedown", clickOutside)
+    return () => document.removeEventListener("mousedown", clickOutside)
+  }, [])
 
   const toggles = () => {
     setSideMenu(prev => !prev);
-  };
+  }
 
   const handleLogout = () => {
     setShowLogoutConfirmation(true);
     setSideMenu(false);
-  };
+  }
+
 
   const confirmLogout = async (event) => {
     event.preventDefault()
     try {
       await signOut() 
-      navigate('/');
-      setShowLogoutConfirmation(false);
+      navigate('/')
+      setShowLogoutConfirmation(false)
     } catch(err) {
       console.err(err)
     }
-  };
+  }
 
  
   const cancelLogout = () => {
-    setShowLogoutConfirmation(false);
+    setShowLogoutConfirmation(false)
 
-  };
+  }
 
   return (
     <>
@@ -107,7 +108,7 @@ const Header = () => {
         <LogoutConfirmation onConfirm={confirmLogout} onCancel={cancelLogout} />
       )}
     </>
-  );
-};
+  )
+}
 
 export default Header;
