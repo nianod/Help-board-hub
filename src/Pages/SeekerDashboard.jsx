@@ -100,9 +100,16 @@ const SeekerDashboard = () => {
                   Posted on: {new Date(post.created_at).toLocaleString()}
                 </small>
               )}
-              <div className='flex gap-1 justify-end  '>
-                <button onClick={() => viewPost(post)} className='p-1 rounded bg-blue-800 text-white cursor-pointer hover:bg-blue-700'>View</button>
-                <button onClick={() => deletePost(post.id)} className='p-1 rounded bg-red-800 text-white cursor-pointer hover:bg-red-700'>Delete</button>
+              <div className='flex justify-between'>
+                {post.accepted_by ? (
+                  <p className='text-red-500 font-semibold'>Accepted by Helper</p>
+                ) :(
+                  <p className='text-red-500 font-semibold'>Awaiting Helper</p>
+                )}
+                <div className='gap-2 flex'>
+                  <button onClick={() => viewPost(post)} className='p-1 rounded bg-blue-800 text-white cursor-pointer hover:bg-blue-700'>View</button>
+                  <button onClick={() => deletePost(post.id)} className='p-1 rounded bg-red-800 text-white cursor-pointer hover:bg-red-700'>Delete</button>
+                </div>
               </div>
             </div>
           ))
