@@ -43,7 +43,18 @@ const HelperDashboard = () => {
         .update({ accepted_by: user.id })
         .eq('id', postId)
       
-        if
+        if(error) {
+          console.log("there was an error", error);
+          
+        } else {
+          console.log("Accepted")
+        }
+
+         //Disable Accepted Post
+          setPosts((prev) => 
+          prev.map((post) =>
+            post.id === postId ? { ...post, accepted_by: user.id} :post
+          ))
         
       }  
 
@@ -78,10 +89,14 @@ const HelperDashboard = () => {
                   Posted on: {new Date(post.created_at).toLocaleString()}
                 </small>
               )}
+              {post.accepted_by ? (
+                <p className='text-red-700 mt-2 font-semibold'>This post has been accepted</p>
+              ) : (
               <div className='flex gap-1 justify-end  '>
                 <button onClick={() => viewPost(post)} className='p-1 rounded bg-blue-800 text-white cursor-pointer hover:bg-blue-700'>View</button>
                 <button onClick={() => acceptPost(post.id)} className='p-1 rounded bg-green-800 text-white cursor-pointer hover:bg-green-700'>Accept</button>
               </div>
+              )}
             </div>
           ))
         )}
