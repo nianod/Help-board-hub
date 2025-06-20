@@ -1,21 +1,4 @@
-import { useEffect } from 'react'
-import { supabase } from '../libs/supabaseClient'
 
-const ownerProfile = async() => {
-  const [userInfo, setUserInfo] = (null)
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      if(!user) return
-
-      const { data, error} = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', user.id)
-      .single()
-    }
-  })
-}
 
 const UserProfile = () => {
   return (
