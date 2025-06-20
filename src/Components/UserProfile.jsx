@@ -1,22 +1,21 @@
+import { useEffect } from 'react'
 import { supabase } from '../libs/supabaseClient'
 
 const ownerProfile = async() => {
-  const { data: { user } } = await supabase.auth.getUser()
+  const [userInfo, setUserInfo] = (null)
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const { data: { user } } = await supabase.auth.getUser()
+      if(!user) return
 
-  const { error } = await supabase
-  .from('users')
-  .insert({
-    id: user.id,
-    username:  user.username,
-    email: user.email,
-    role: 'seeker'
+      const { data, error} = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', user.id)
+      .single()
+    }
   })
-
-  if(error) {
-    console.error("Error fetching user data: ", error.message)
-  }
 }
-ownerProfile()
 
 const UserProfile = () => {
   return (
