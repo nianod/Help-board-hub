@@ -36,7 +36,7 @@ const HelperDashboard = () => {
 
       //Accept post
       const acceptPost = async(postId) => {
-       
+       setLoadingAccept(true)
         const {data: { user } } = await supabase.auth.getUser()
 
       if(!user?.email) {
@@ -97,7 +97,13 @@ const HelperDashboard = () => {
               ) : (
               <div className='flex gap-1 justify-end  '>
                 <button onClick={() => viewPost(post)} className='p-1 rounded bg-blue-800 text-white cursor-pointer hover:bg-blue-700'>View</button>
-                <button onClick={() => acceptPost(post.id)} className='p-1 rounded bg-green-800 text-white cursor-pointer hover:bg-green-700'>{load}</button>
+                <button
+                 onClick={() => acceptPost(post.id)}
+                 disabled={loadingAccept}
+                 className={`p-1 rounded ${loadingAccept ? "cursor-not-allowed bg-green-300" : "bg-green-800 text-white hover:bg-green-700  cursor-pointer"}`}
+                >
+                  {loadingAccept ? "Accepting..." : "Accept"}
+                </button>
               </div>
               )}
             </div>
