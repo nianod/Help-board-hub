@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../Supabase/AuthContext';
+import { supabase } from '../libs/supabaseClient';
  
 
  const Signin = () => {
@@ -23,6 +24,20 @@ const handleSubmit = async (event) => {
   if (password.length < 6) {
     setError("Password must be at least 6 characters");
     return;
+  }
+
+  const { data: { user } } = await supabase.auth.getUser()
+  const { error } = await supabase 
+  .from('users')
+  .insert({
+    id: user.id,
+    username: user.username,
+    email: user.email,
+    role: 'seeker'
+  })
+
+  if(err) {
+    console.err("there was an error fetching data: ", err.message)
   }
 
   try {
