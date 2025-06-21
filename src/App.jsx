@@ -8,6 +8,7 @@ import Home from './Pages/Home';
 import SignUp from './Pages/Signup';
 import Signin from './Pages/Signin';
 import Reset from './Pages/Reset';
+import NewReset from './Pages/NewRest';
 import View from './Components/View';
 import HelperDashboard from './Pages/HelperDashboard';
 import SeekerDashboard from './Pages/SeekerDashboard';
@@ -15,6 +16,7 @@ import UserProfile from './Components/UserProfile';
 import Notice from './Components/404';
 import PrivateRouter from './Components/PrivateRouter';
 import { AuthContextProvider } from './Supabase/AuthContext';
+
 
 function App() {
   useEffect(() => {
@@ -33,6 +35,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Signin />} />
           <Route path="/reset" element={<Reset />} />
+          <Route path="/reset-password" element={<NewReset />} />
         </Route>
         <Route element={<PrivateRouter />} >
         <Route element={<Layout />}>

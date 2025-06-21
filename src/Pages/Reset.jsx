@@ -1,16 +1,19 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Reset = () => {
 
  
     const [error, setError] = useState("")
     const [email, setEmail] = useState("")
-
+    const [loading, setLoading] = useState(false)
+    const navigate = useNavigate
 
 
     const handlESubmit = (event) => {
         event.preventDefault()
+        setLoading(true)
+        navigate('/nreset')
     }
   return (
     <div className=' pb-20'>
@@ -28,9 +31,10 @@ const Reset = () => {
         {error && <p className='text-red-600 flex justify-center text-sm'>{error}</p> }
 
         <button type="submit"
-        className='bg-blue-300 p-2 cursor-pointer font-bold rounded text-xl mt-2'
+        className={`bg-blue-300 p-2 font-bold rounded text-xl mt-2 ${loading ? "cursor-not-allowed" : "cursor-pointer"}`}
+        disabled={loading}
         >
-          Reset
+         {loading ? "Reseting..." : "Reset"}
         </button>
         <p className='flex justify-center gap-1'>Don't have an account?
             <Link to='/signup'className='text-red-500'>
