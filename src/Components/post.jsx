@@ -175,10 +175,10 @@ const Post = ({ onCancel, onAddPost }) => {
           <button
             type="submit"
             disabled={loading}
-            className={`cursor-pointer rounded-md bg-blue-900 text-white w-20 p-1 font-bold ${
+            className={` rounded-md bg-blue-900 text-white w-20 p-1 font-bold ${
               loading
                 ? "opacity-50 cursor-not-allowed"
-                : "bg-blue-900 hover:bg-blue-800 cursor-not-allowed"
+                : "bg-blue-900 hover:bg-blue-800 cursor-pointer"
             }`}
           >
             {loading ? "Posting..." : "Post"}
