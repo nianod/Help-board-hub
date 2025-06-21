@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { supabase } from '../libs/supabaseClient'
 
 const Reset = () => {
 
@@ -7,13 +8,21 @@ const Reset = () => {
     const [error, setError] = useState("")
     const [email, setEmail] = useState("")
     const [loading, setLoading] = useState(false)
-    const navigate = useNavigate
+   // const navigate = useNavigate()
 
 
-    const handlESubmit = (event) => {
+    const handlESubmit = async (event) => {
         event.preventDefault()
         setLoading(true)
-        navigate('/nreset')
+        const { data, error} = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: 'http://localhost:5173/reset-password'
+        })
+        if(error) {
+          setError(error.message)
+        } else {
+          alert('check your email for reset link')
+        }
+        setLoading(false)
     }
   return (
     <div className=' pb-20'>

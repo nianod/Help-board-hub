@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { supabase } from '../libs/supabaseClient'
 
 const NewReset = () => {
 
@@ -11,18 +12,33 @@ const NewReset = () => {
     const navigate = useNavigate()
 
 
-    const handlESubmit = (event) => {
+    const handlESubmit = async (event) => {
         event.preventDefault()
         setLoading(true)
         if(password !== confirmPassword) {
             setError("Passwords didn't match")
             setLoading(false)
-        } else if (password.length < 6) {
+            return
+        }
+
+        if (password.length < 6) {
             setError("Password must be atleast 6 characters")
              setLoading(false)
-        } else {
-            navigate('/login')
+             return
+        } 
+
+        const { error: updatError} = await supabase.auth.updateUser({password})
+        if(updatError) {
+            setError(updatError.message)
+            setLoading(fasle)
+            return
         }
+        alert('password updated successfully')
+        navigate('/login')
+        setPassword('')
+        SetConfirmPassword('')
+         
+ 
     }
   return (
     <div className=' pb-20'>
@@ -52,7 +68,7 @@ const NewReset = () => {
         className={`bg-blue-300 p-2 font-bold rounded text-xl mt-2 ${loading ? "cursor-not-allowed" : "cursor-pointer"}`}
         disabled={loading}
         >
-         {loading ? "Proceeding..." : "Proceed"}
+         {loading ? "validating..." : "validate"}
         </button>
       </form>
     </div>
