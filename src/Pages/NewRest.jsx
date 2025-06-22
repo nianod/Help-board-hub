@@ -37,8 +37,6 @@ const NewReset = () => {
         navigate('/login')
         setPassword('')
         SetConfirmPassword('')
-         
- 
     }
   return (
     <div className=' pb-20'>

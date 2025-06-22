@@ -1,7 +1,6 @@
 import { useEffect} from 'react';
 import AOS from 'aos';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
 import Layout from './Components/Layout';
 import AuthLayout from './Components/authLayout';
 import Home from './Pages/Home';
