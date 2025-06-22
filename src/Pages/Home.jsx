@@ -7,7 +7,7 @@ export default function Home() {
 
   // Fetch the markdown file when component loads
   useEffect(() => {
-    fetch("/src/docs/description.md")
+    fetch("/docs/description.md")
       .then((res) => res.text())
       .then((text) => setMarkdown(text));
   }, []);
