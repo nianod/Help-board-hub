@@ -86,7 +86,7 @@ const SeekerDashboard = () => {
         ) : error ? (
           <p className="text-red-500">{error}</p>
         ) : posts.length === 0 ? (
-          <p className='text-white'>No posts yet. Be the first to post!</p>
+          <p className='text-white'>You have No posts yet. Make your first to post!</p>
         ) : (
           posts.map(post => (
             <div key={post.id} className="border p-4 rounded-lg shadow-sm bg-white">
