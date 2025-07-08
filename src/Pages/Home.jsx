@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div data-aos="zoom-out-up" className="text-center p-8">
       <h1 className="text-4xl font-bold mb-6 text-blue-500">Welcome to Help Hub!</h1>
-      <p className="mb-8 text-white">Join us as:</p>
+      <p className="mb-8 text-white font-semibold text-xl">Join us as:</p>
       <div className="flex gap-4 justify-center">
         <Link 
           to="/signup?role=helper" 
@@ -19,9 +19,7 @@ export default function Home() {
           I Need Help
         </Link>
       </div>
-      <div>
-        {/*description using markdown */}
-      </div>
+      <p className="text-white mt-6">Tap <Link to="/learn-more" className="text-blue-400 hover:underline">Here</Link> To learn how it works</p>
     </div>
   );
 }

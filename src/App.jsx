@@ -9,6 +9,7 @@ import Signin from './Pages/Signin';
 import Reset from './Pages/Reset';
 import NewReset from './Pages/NewRest';
 import View from './Components/View';
+import LearnMore from './Integration/LearnMore';
 import HelperDashboard from './Pages/HelperDashboard';
 import SeekerDashboard from './Pages/SeekerDashboard';
 import UserProfile from './Components/UserProfile';
@@ -23,7 +24,8 @@ function App() {
       duration: 1000,
       once: true
     })
-  }, []);
+  }, [])
+
   return (
     <>
    <AuthContextProvider>
@@ -35,6 +37,7 @@ function App() {
           <Route path="/login" element={<Signin />} />
           <Route path="/reset" element={<Reset />} />
           <Route path="/reset-password" element={<NewReset />} />
+          <Route path="/learn-more" element={<LearnMore />} />
         </Route>
         <Route element={<PrivateRouter />} >
         <Route element={<Layout />}>

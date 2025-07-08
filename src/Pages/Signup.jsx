@@ -157,7 +157,7 @@ const handleSubmit = async (event) => {
 
         <button
           type="submit"
-          className='bg-blue-300 p-2 mt-5 font-bold rounded text-xl cursor-pointer transition-colors'
+          className={`bg-blue-300 p-2 mt-5 font-bold rounded text-xl  transition-colors hover:bg-blue-400 ${loading ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
         >
          {loading ? "Signing up ..." : "Sign up"}
         </button>
