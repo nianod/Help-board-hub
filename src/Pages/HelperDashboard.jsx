@@ -1,42 +1,44 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../libs/supabaseClient';  
 import { useNavigate } from 'react-router-dom'
+import useFetchPosts from '../Hooks/useFetchPosts';
 
 const HelperDashboard = () => {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-    const [loadingAccept, setLoadingAccept] = useState(false)
+  // const [posts, setPosts] = useState([]);
+  // const [loading, setLoading] = useState(true)
+  // const [error, setError] = useState(null)
+  const [loadingAccept, setLoadingAccept] = useState(null)
 
   const navigate = useNavigate()
 
-   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('postst')
-          .select('*')
-          .order('created_at', { ascending: false });
+    const { posts, loading, error } = useFetchPosts()
+  //  useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     try {
+  //       const { data, error } = await supabase
+  //         .from('postst')
+  //         .select('*')
+  //         .order('created_at', { ascending: false });
 
-        if (error) throw error;
+  //       if (error) throw error;
 
-        setPosts(data);
-      } catch (err) {
-        console.error('Error fetching posts:', err);
-        setError('Failed to load posts');
-      } finally {
-        setLoading(false);
-      }
-    };
+  //       setPosts(data);
+  //     } catch (err) {
+  //       console.error('Error fetching posts:', err);
+  //       setError('Failed to load posts');
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchPosts();
-  }, []);
+  //   fetchPosts();
+  // }, []);
 
  
 
       //Accept post
       const acceptPost = async(postId) => {
-       setLoadingAccept(true)
+       setLoadingAccept(post.id)
         const {data: { user } } = await supabase.auth.getUser()
 
       if(!user?.email) {
@@ -58,7 +60,7 @@ const HelperDashboard = () => {
           prev.map((post) =>
             post.id === postId ? { ...post, accepted_by: user.email} :post
           ))
-        
+        setLoadingAccept(null)
       }  
 
       //View POst 
@@ -99,8 +101,8 @@ const HelperDashboard = () => {
                 <button onClick={() => viewPost(post)} className='p-1 rounded bg-blue-800 text-white cursor-pointer hover:bg-blue-700'>View</button>
                 <button
                  onClick={() => acceptPost(post.id)}
-                 disabled={loadingAccept}
-                 className={`p-1 rounded ${loadingAccept ? "cursor-not-allowed bg-green-600" : "opacity-50 text-white hover:bg-green-700  cursor-pointer"}`}
+                 disabled={loadingAccept === post.id}
+                 className={`p-1 rounded bg-green-700 hover:bg-green-800 ${loadingAccept === post.id ? "cursor-not-allowed opacity-50" : "   cursor-pointer"}`}
                 >
                   {loadingAccept ? "Accepting..." : "Accept"}
                 </button>

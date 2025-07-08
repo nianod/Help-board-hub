@@ -1,1 +1,4 @@
-passwod = 3twIVd02vwWHXIe9
+
+                 ========================
+React Fronted <= # environment Variable # => Backend Supabase(Cloud)
+                 ========================
