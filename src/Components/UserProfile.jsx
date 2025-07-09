@@ -1,5 +1,6 @@
 import { UserAuth } from "../Supabase/AuthContext"
 import useFetchPosts from "../Hooks/useFetchPosts"
+import { FaUser, FaLock, FaTrash } from 'react-icons/fa';
 
 const UserProfile = () => {
   const { session } = UserAuth()
@@ -19,11 +20,15 @@ const UserProfile = () => {
         {error && <p>Error: {error}</p>}
         {posts.length === 0 && !loading && <p>No posts found.</p>}
         {posts.map((post) => (
-          <div key={post.id} className="bg-gray-800 text-white p-4 rounded mb-2">
-            <span>{post.category}</span>
-            <p>{post.text}</p>
+          <div key={post.id} className="bg-amber-500 text-green-600 p-4 rounded mb-2">
+            <span>{post.category} Category</span>
+            <p>Description: {post.text}</p>
+            <span>Posted on: {new Date(post.created_at).toLocaleString}</span>
           </div>
         ))}
+      </div>
+      <div className="border-2 w-50 border-red-500 p-3 rounded flex items-center gap-2">
+        <button className="text-red-400 flex items-center gap-2 cursor-pointer">Delete Account <FaTrash /></button>
       </div>
     </>
   );
