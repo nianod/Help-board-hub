@@ -3,7 +3,6 @@ import { supabase } from "../libs/supabaseClient";
 
 
 const useFetchPosts = (userId) => {
-
     const [posts, setPosts] = useState([])
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(true)
@@ -11,16 +10,20 @@ const useFetchPosts = (userId) => {
     useEffect(() => {
         const fetchPosts = async() => {
             try {
-                const { data, error } = await supabase
-                .from('postst')
-                .select('*')
-                .eq("user_id", userId)
-                .order('created_at', { ascending: false })
+                let query = supabase
+                    .from('postst')
+                    .select('*')
+                    .order('created_at', { ascending: false })
+
+                
+                if (userId) {
+                    query = query.eq("user_id", userId)
+                }
+
+                const { data, error } = await query
 
                 if(error) throw error;
-                setPosts(data)
-                setLoading(false)
-
+                setPosts(data || [])
             } catch (err) {
                 setError(err.message || 'Failed to Fetch Posts')
             } finally {
@@ -28,9 +31,9 @@ const useFetchPosts = (userId) => {
             }
         }
         fetchPosts()
-    }, [])
+    }, [userId])
 
-  return { posts, loading, error}
+    return { posts, loading, error }
 }
 
 export default useFetchPosts

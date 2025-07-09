@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import useFetchPosts from '../Hooks/useFetchPosts';
 
 const HelperDashboard = () => {
-  // const [posts, setPosts] = useState([]);
+  //const [posts, setPosts] = useState([]);
   // const [loading, setLoading] = useState(true)
   // const [error, setError] = useState(null)
   const [loadingAccept, setLoadingAccept] = useState(null)
@@ -38,12 +38,12 @@ const HelperDashboard = () => {
 
       //Accept post
       const acceptPost = async(postId) => {
-       setLoadingAccept(post.id)
+       setLoadingAccept(postId)
         const {data: { user } } = await supabase.auth.getUser()
 
-      if(!user?.email) {
-        console.log('no user email found')
-      }
+      // if(!user?.email) {
+      //   console.log('no user email found')
+      // }
 
         const { error } = await supabase 
         .from('postst')
@@ -53,13 +53,15 @@ const HelperDashboard = () => {
         if(error) {
           console.log("there was an error here brother", error);
           
-        } 
+        } else {
+          window.location.reload()
+        }
 
          //Disable Accepted Post
-          setPosts((prev) => 
-          prev.map((post) =>
-            post.id === postId ? { ...post, accepted_by: user.email} :post
-          ))
+          // setPosts((prev) => 
+          // prev.map((post) =>
+          //   post.id === postId ? { ...post, accepted_by: user.email} :post
+          // ))
         setLoadingAccept(null)
       }  
 
