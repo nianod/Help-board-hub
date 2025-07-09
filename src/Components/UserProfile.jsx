@@ -9,8 +9,8 @@ const UserProfile = () => {
 
   return (
     <>
-      <div className="mt-20">
-        <h2 className='mt-6 text-white font-bold'>Welcome, {user?.user_metadata?.email || user?.email}</h2>
+      <div className="mt-15 justify-center flex ">
+        <h2 className='mt-6 text-white font-bold text-2xl'>Welcome to your Profile, <span className="capitalize text-3xl text-blue-200">{user?.user_metadata?.username || user?.email}</span></h2>
       </div>
 
       <div className="mt-4">
