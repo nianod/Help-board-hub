@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import steps from "./Giudes";
 
 const LearnMore = (): JSX.Element => {
   return (
@@ -58,10 +59,8 @@ const LearnMore = (): JSX.Element => {
             <span>To be rewarded on your gesture of kindness, you can negotiate on that since. Apparently the system doen not support discourage neither encourage that.</span> <br />
             <i className="text-blue-500">- On arriving on win win situation, Appreciate each other in ways of your wishes</i>
         </div>
-        <section>
-            
-        </section>
       </section>
+      <span className="text-red-500">*{steps.step1}*</span>
 
       <p className="mt-8 text-gray-300 italic text-center">
         Ready to get started?

@@ -102,7 +102,7 @@ const HelperDashboard = () => {
                 <button
                  onClick={() => acceptPost(post.id)}
                  disabled={loadingAccept === post.id}
-                 className={`p-1 rounded bg-green-700 hover:bg-green-800 ${loadingAccept === post.id ? "cursor-not-allowed opacity-50" : "   cursor-pointer"}`}
+                 className={`p-1 text-white rounded bg-green-700 hover:bg-green-800 ${loadingAccept === post.id ? "cursor-not-allowed opacity-50" : "   cursor-pointer"}`}
                 >
                   {loadingAccept ? "Accepting..." : "Accept"}
                 </button>
