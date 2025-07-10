@@ -6,7 +6,7 @@ const UserProfile = () => {
   const { session } = UserAuth()
   const user = session?.user
 
-  const { posts, loading, error } = useFetchPosts(user?.id)
+  const { posts, loading, error } = useFetchPosts(user?.id)   
 
   return (
     <>
