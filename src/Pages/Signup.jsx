@@ -2,6 +2,7 @@ import { FaUser, FaLock } from 'react-icons/fa';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { UserAuth } from '../Supabase/AuthContext';
+import { supabase } from '../libs/supabaseClient';
 
 const SignUp = () => {
 
@@ -13,7 +14,7 @@ const [error, setError] = useState("")
 const [loading, setLoading] = useState(false)
 
 const { session, registerNewUser } = UserAuth()
-console.log(session);
+//console.log(session);
 
 const location = useLocation()
 const navigate = useNavigate()
@@ -43,6 +44,26 @@ const handleSubmit = async (event) => {
 
     if(result.success) {
       setError("")
+
+       const { data: { user } } = await supabase.auth.getUser()
+        if(user) {
+          const userInfo = {
+            id: user.id,
+            username: username,
+            role: role,
+            email: email,
+          }
+          const { error: insertError } = await supabase
+          .from('users')
+          .insert([userInfo]) 
+          console.log('Waaaaaaaaaaaaaaaaaooo')
+
+          if( insertError ) {
+            console.warn('There was an error', insertError)
+          }
+        }
+
+        
        if (role === 'helper') {
       navigate('/dashboard/helper');
       localStorage.setItem('role', 'helper')
@@ -64,7 +85,7 @@ const handleSubmit = async (event) => {
     setLoading(false)
   }
 
- 
+
   
 };
 

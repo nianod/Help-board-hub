@@ -28,7 +28,7 @@ const UserProfile = () => {
         ))}
       </div>
       <div className="border-2 w-50 border-red-500 p-3 rounded flex items-center gap-2">
-        <button className="text-red-400 flex items-center gap-2 cursor-pointer">Delete Account <FaTrash /></button>
+        <button conc className="text-red-400 flex items-center gap-2 cursor-pointer">Delete Account <FaTrash /></button>
       </div>
     </>
   );
