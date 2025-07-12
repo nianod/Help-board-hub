@@ -20,10 +20,12 @@ const UserProfile = () => {
       }
       const { data, error } = await fetch
       if(error) throw error;
-      setProfilePosts(data)
+      setProfilePosts(data || [])
  
     } catch(err) {
       console.error("Error fetching posts ", err)
+    } finally {
+      setLoading(false)
     }
 
   }
