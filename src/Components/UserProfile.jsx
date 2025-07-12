@@ -10,16 +10,17 @@ const UserProfile = () => {
   const [profilePosts, setProfilePosts] = useState([])
   const { session } = UserAuth()
   const user = session?.user
+  const userId = user?.id
 
   const fetchProfilePosts = async() => {
     try {
       let fetch = supabase
-      .from('posts')
+      .from('postst')
       .select()
-      .order('cretaed_at ', { ascending: false })
+      .order('created_at ', { ascending: false })
 
       if(userId) {
-        fetch = fetch.eq('User_id', userId)
+        fetch = fetch.eq('user_id', userId)
       }
       const { data, error } = await fetch
       if(error) throw error;
@@ -27,6 +28,7 @@ const UserProfile = () => {
  
     } catch(err) {
       setError(err.message || 'Failed to fetch posts')
+      console.log(err.message)
     } finally {
       setLoading(false)
     }
@@ -34,7 +36,7 @@ const UserProfile = () => {
   }
   useEffect(() => {
     fetchProfilePosts();
-  }, [])
+  }, [userId])
 
   return (
     <>
@@ -45,7 +47,7 @@ const UserProfile = () => {
       <div className="mt-4">
         <h1>Your Previous Posts</h1>
         {loading && <p>Loading posts...</p>}
-        {error && <p>Error: {error}</p>}
+        {error && <p className='text-red-500'>Error: {error}</p>}
         {profilePosts.length === 0 && !loading && <p>No posts found.</p>}
         {profilePosts.map((post) => (
           <div key={post.id} className="bg-amber-500 text-green-600 p-4 rounded mb-2">
