@@ -1,12 +1,8 @@
-import { UserAuth } from "../Supabase/AuthContext"
-import useFetchPosts from "../Hooks/useFetchPosts"
-import { FaUser, FaLock, FaTrash } from 'react-icons/fa';
+import { FaTrash } from 'react-icons/fa';
 
 const UserProfile = () => {
-  const { session } = UserAuth()
-  const user = session?.user
-
-  const { posts, loading, error } = useFetchPosts(user?.id)   
+  
+  const 
 
   return (
     <>
