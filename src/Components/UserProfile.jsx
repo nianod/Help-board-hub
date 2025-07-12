@@ -4,7 +4,7 @@ import { supabase } from '../libs/supabaseClient';
 
 const UserProfile = () => {
   
-  const [error, setError] = useState("false")
+  const [error, setError] = useState("")
   const [loading, setLoading] = useState(true)
   const [profilePosts, setProfilePosts] = useState([])
 
@@ -23,7 +23,7 @@ const UserProfile = () => {
       setProfilePosts(data || [])
  
     } catch(err) {
-      console.error("Error fetching posts ", err)
+      setError(err.message || 'Failed to fetch posts')
     } finally {
       setLoading(false)
     }
