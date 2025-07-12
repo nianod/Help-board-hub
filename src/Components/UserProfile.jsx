@@ -6,7 +6,7 @@ const UserProfile = () => {
   
   const [error, setError] = useState("false")
   const [loading, setLoading] = useState(true)
-  const [profilePosts, setProfilePosts] = useState(null)
+  const [profilePosts, setProfilePosts] = useState([])
 
   const fetchProfilePosts = async() => {
     try {
@@ -18,7 +18,10 @@ const UserProfile = () => {
       if(userId) {
         fetch = fetch.eq('User_id', userId)
       }
-
+      const { data, error } = await fetch
+      if(error) throw error;
+      setProfilePosts(data)
+ 
     } catch(err) {
       console.error("Error fetching posts ", err)
     }
