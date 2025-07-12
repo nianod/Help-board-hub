@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import { supabase } from '../libs/supabaseClient';
+import { UserAuth } from '../Supabase/AuthContext'
 
 const UserProfile = () => {
   
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(true)
   const [profilePosts, setProfilePosts] = useState([])
+  const { session } = UserAuth()
+  const user = session?.user
 
   const fetchProfilePosts = async() => {
     try {
@@ -43,8 +46,8 @@ const UserProfile = () => {
         <h1>Your Previous Posts</h1>
         {loading && <p>Loading posts...</p>}
         {error && <p>Error: {error}</p>}
-        {posts.length === 0 && !loading && <p>No posts found.</p>}
-        {posts.map((post) => (
+        {profilePosts.length === 0 && !loading && <p>No posts found.</p>}
+        {profilePosts.map((post) => (
           <div key={post.id} className="bg-amber-500 text-green-600 p-4 rounded mb-2">
             <span>{post.category} Category</span>
             <p>Description: {post.text}</p>
@@ -53,7 +56,7 @@ const UserProfile = () => {
         ))}
       </div>
       <div className="border-2 w-50 border-red-500 p-3 rounded flex items-center gap-2">
-        <button conc className="text-red-400 flex items-center gap-2 cursor-pointer">Delete Account <FaTrash /></button>
+        <button className="text-red-400 flex items-center gap-2 cursor-pointer">Delete Account <FaTrash /></button>
       </div>
     </>
   );
