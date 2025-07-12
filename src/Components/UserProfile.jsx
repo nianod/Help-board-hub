@@ -13,7 +13,14 @@ const UserProfile = () => {
       let fetch = supabase
       .from('posts')
       .select()
-      .order('cretaed_at ', { ascending: false} )
+      .order('cretaed_at ', { ascending: false })
+
+      if(userId) {
+        fetch = fetch.eq('User_id', userId)
+      }
+
+    } catch(err) {
+      console.error("Error fetching posts ", err)
     }
 
   }
