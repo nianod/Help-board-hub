@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 
 const UserProfile = () => {
   
-  const 
+  const [error, setError] = useState("false")
+  const [loading, setLoading] = useState(true)
 
   return (
     <>
