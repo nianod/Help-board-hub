@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
+import { supabase } from '../libs/supabaseClient';
 
 const UserProfile = () => {
   
@@ -8,6 +9,12 @@ const UserProfile = () => {
   const [profilePosts, setProfilePosts] = useState(null)
 
   const fetchProfilePosts = async() => {
+    try {
+      let fetch = supabase
+      .from('posts')
+      .select()
+      .order('cretaed_at ', { ascending: false} )
+    }
 
   }
   useEffect(() => {
