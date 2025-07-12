@@ -17,7 +17,7 @@ const UserProfile = () => {
       let fetch = supabase
       .from('postst')
       .select()
-      .order('created_at ', { ascending: false })
+      .order('created_at', { ascending: false })
 
       if(userId) {
         fetch = fetch.eq('user_id', userId)
@@ -38,6 +38,30 @@ const UserProfile = () => {
     fetchProfilePosts();
   }, [userId])
 
+  //Fetch Role from user's table
+  const fetchRole = async() => {
+    if(!userId)
+      return;
+
+      const { data, error } = await supabase
+      .from('users')
+      .select('role')
+      .eq('id', userId)
+      .maybeSingle()
+
+      if(error) {
+        console.log('Error occurred during fetching role', error.message)
+        return;
+      }
+      console.log('the user id is', userId)
+      console.log('Role is', data.role)
+      
+
+  }
+  useEffect(() => {
+    fetchRole()
+  }, [])
+
   return (
     <>
       <div className="mt-15 justify-center flex ">
@@ -53,7 +77,7 @@ const UserProfile = () => {
           <div key={post.id} className="bg-amber-500 text-green-600 p-4 rounded mb-2">
             <span>{post.category} Category</span>
             <p>Description: {post.text}</p>
-            <span>Posted on: {new Date(post.created_at).toLocaleString}</span>
+            <span>Posted on: {new Date(post.created_at).toLocaleString()}</span>
           </div>
         ))}
       </div>
