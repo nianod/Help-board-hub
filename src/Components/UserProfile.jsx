@@ -1,10 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 
 const UserProfile = () => {
   
   const [error, setError] = useState("false")
   const [loading, setLoading] = useState(true)
+  const [profilePosts, setProfilePosts] = useState(null)
+
+  const fetchProfilePosts = async() => {
+
+  }
+  useEffect(() => {
+    fetchProfilePosts();
+  }, [])
 
   return (
     <>
