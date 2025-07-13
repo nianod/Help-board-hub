@@ -8,6 +8,7 @@ const UserProfile = () => {
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(true)
   const [profilePosts, setProfilePosts] = useState([])
+  const [role, setRole] = useState(null)
   const { session } = UserAuth()
   const user = session?.user
   const userId = user?.id
@@ -42,10 +43,12 @@ const UserProfile = () => {
   const fetchRole = async() => {
     if(!userId) {
       console.log('No such user found brother')
+      return;
     }
       
-
+    try {
       const { data, error } = await supabase
+      .from('users')
       .select('role')
       .eq('id', userId)
       .maybeSingle()
@@ -54,11 +57,16 @@ const UserProfile = () => {
         console.log('Error occurred during fetching role', error.message)
         return;
       }
-      console.log('the user id is', userId)
-      console.log('session is', session)
-      console.log('user is', user)
-      console.log('Role is', data.role)
-      
+      if(data) {
+        setRole(data.role)
+        console.log('Role is', data.role)
+      } else {
+        console.log('No role data found')
+      }
+     
+    }catch (err) {
+      console.error(err.message)
+    }  
       
 
   }
@@ -69,10 +77,15 @@ const UserProfile = () => {
   return (
     <>
       <div className="mt-15 justify-center flex ">
-        <h2 className='mt-6 text-white font-bold text-2xl'>Welcome to your Profile, <span className="capitalize text-3xl text-blue-200">{user?.user_metadata?.username || user?.email}</span></h2>
+        <h2 className='mt-6 text-white font-bold text-2xl'>Welcome to your Profile,
+           <span className="capitalize text-3xl text-blue-200">{user?.user_metadata?.username || user?.email}</span></h2>
       </div>
-
-      <div className="mt-4">
+        <p>
+          {role === 'seeker' && (
+            <span> How are you young man </span>
+          )}
+        </p>
+      {/* <div className="mt-4">
         <h1>Your Previous Posts</h1>
         {loading && <p>Loading posts...</p>}
         {error && <p className='text-red-500'>Error: {error}</p>}
@@ -84,7 +97,7 @@ const UserProfile = () => {
             <span>Posted on: {new Date(post.created_at).toLocaleString()}</span>
           </div>
         ))}
-      </div>
+      </div> */}
       <div className="border-2 w-50 border-red-500 p-3 rounded flex items-center gap-2">
         <button className="text-red-400 flex items-center gap-2 cursor-pointer">Delete Account <FaTrash /></button>
       </div>
