@@ -40,11 +40,12 @@ const UserProfile = () => {
 
   //Fetch Role from user's table
   const fetchRole = async() => {
-    if(!userId)
-      return;
+    if(!userId) {
+      console.log('No such user found brother')
+    }
+      
 
       const { data, error } = await supabase
-      .from('users')
       .select('role')
       .eq('id', userId)
       .maybeSingle()
@@ -54,7 +55,10 @@ const UserProfile = () => {
         return;
       }
       console.log('the user id is', userId)
+      console.log('session is', session)
+      console.log('user is', user)
       console.log('Role is', data.role)
+      
       
 
   }
