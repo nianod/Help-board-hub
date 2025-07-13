@@ -1,5 +1,5 @@
 import { UserAuth } from "../Supabase/AuthContext";
-import { FaUser } from 'react-icons/fa';
+import { FaUser, FaEdit } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { supabase } from '../libs/supabaseClient';
 
@@ -7,7 +7,8 @@ const UserProfile = () => {
   const { session } = UserAuth();
   const user = session?.user;
   const [userRole, setUserRole] = useState('');
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState(null)
+  const [error, setError] = useState('')
 
 
   useEffect(() => {
@@ -35,6 +36,13 @@ const UserProfile = () => {
     fetchUserData();
   }, [user]);
 
+  const edit = () => {
+         setError('Not currently suppported')
+    setTimeout(() => {
+        setError('')
+    }, 3000)
+    
+  }
 
   return (
     <div className="max-w-4xl mx-auto p-4">
@@ -66,10 +74,14 @@ const UserProfile = () => {
         </div>
       </div>
       <button
-        className="flex justify-center"
+        className="flex m-auto items-center gap-2 bg-gray-100 rounded p-2 cursor-pointer hover:bg-gray-200"
+        onClick={edit}
       >
-        edit
+        Edit <FaEdit/>
      </button>
+    {error && (
+        <span className="text-red-500 justify-center flex">{error}</span>
+    )}
     </div>
   );
 
