@@ -99,11 +99,19 @@ const UserProfile = () => {
 
         </div>
         {role === 'helper' && (
-          <span>We are Glad you stood out to volunteer for providing Help Support</span>
+          <span className='text-xl text-white'>We are Glad you stood out to volunteer for providing Help Support</span>
         )}
  
-      <div className="border-2 w-50 border-red-500 p-3 rounded flex items-center gap-2">
-        <button className="text-red-400 flex items-center gap-2 cursor-pointer">Delete Account <FaTrash /></button>
+       <div className="max-w-4xl mx-auto p-4 mt-6">
+        <div className="border-2 border-red-700 rounded-lg p-4 bg-red-900/20">
+          <h3 className="text-xl font-bold text-red-300 mb-3">Danger Zone</h3>
+          <button className="text-red-400 hover:bg-red-800 flex items-center gap-2 cursor-pointer border rounded p-1">
+            <FaTrash /> Delete Account...
+          </button>
+          <p className="text-sm text-red-300 mt-2">
+            Warning: This action cannot be undone. All your data will be permanently deleted.
+          </p>
+        </div>
       </div>
     </>
   );
