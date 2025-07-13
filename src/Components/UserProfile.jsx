@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaHistory } from 'react-icons/fa';
 import { supabase } from '../libs/supabaseClient';
 import { UserAuth } from '../Supabase/AuthContext'
+import UserInfo from './UserInfo';
 
 const UserProfile = () => {
   
@@ -80,10 +81,11 @@ const UserProfile = () => {
         <h2 className='mt-6 text-white font-bold text-2xl'>Welcome to your Profile,
            <span className="capitalize text-3xl text-blue-200">{user?.user_metadata?.username || user?.email}</span></h2>
       </div>
+
         <div>
           {role === 'seeker' && (
             <div className="mt-4">
-               <h1>Your Previous Posts</h1>
+               <h1 className='text-center text-white'>Your Previous Posts</h1>
                 {loading && <p>Loading posts...</p>}
                 {error && <p className='text-red-500'>Error: {error}</p>}
                 {profilePosts.length === 0 && !loading && <p>No posts found.</p>}
@@ -99,13 +101,26 @@ const UserProfile = () => {
 
         </div>
         {role === 'helper' && (
-          <span className='text-xl text-white'>We are Glad you stood out to volunteer for providing Help Support</span>
+          <div> <p className='text-xl text-white flex justify-center mt-10'>We are Glad you stood out to volunteer for providing Help Support</p>
+            <div className="mt-6 border-gray-700 pt-4 flex justify-center gap-5 border">
+              <div className='bg-gray-700 rounded-lg p-6 mb-6'>
+                <h3 className="font-semibold text-gray-300 mb-2 flex items-center gap-2">
+                    <FaHistory /> Recent Activity
+                  </h3>
+                <p className="text-gray-400">Your recent interactions will appear here</p>
+              </div>
+              <div className='bg-gray-800 rounded-lg p-6 mb-6'>
+                <UserInfo />
+              </div>
+           </div>
+          </div>
+          
         )}
  
-       <div className="max-w-4xl mx-auto p-4 mt-6">
+       <div className="pb-25 max-w-4xl mx-auto p-4 mt-6">
         <div className="border-2 border-red-700 rounded-lg p-4 bg-red-900/20">
           <h3 className="text-xl font-bold text-red-300 mb-3">Danger Zone</h3>
-          <button className="text-red-400 hover:bg-red-800 flex items-center gap-2 cursor-pointer border rounded p-1">
+          <button className="text-red-400 hover:bg-red-800 hover:transition flex items-center gap-2 cursor-pointer border rounded p-1">
             <FaTrash /> Delete Account...
           </button>
           <p className="text-sm text-red-300 mt-2">
