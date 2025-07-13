@@ -84,7 +84,11 @@ const UserProfile = () => {
           {role === 'seeker' && (
             <span> How are you young man </span>
           )}
+
         </p>
+        {role === 'helper' && (
+          <span>Thank you for helping</span>
+        )}
       {/* <div className="mt-4">
         <h1>Your Previous Posts</h1>
         {loading && <p>Loading posts...</p>}
