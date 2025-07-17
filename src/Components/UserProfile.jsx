@@ -74,6 +74,11 @@ const UserProfile = () => {
   useEffect(() => {
     fetchRole()
   }, [])
+  //Delete account
+    const handledelete = () => {
+      
+    }
+
 
   return (
     <>
@@ -96,7 +101,7 @@ const UserProfile = () => {
                     <span>Posted on: {new Date(post.created_at).toLocaleString()}</span>
                   </div>
                 ))}
-                <div className='bg-gray-800 rounded-lg '>
+                <div className='bg-gray-800 rounded-lg max-w-sm m-auto mt-5'>
                   <UserInfo />
                 </div>
               </div>            
@@ -123,7 +128,9 @@ const UserProfile = () => {
        <div className="pb-25 max-w-4xl mx-auto p-4 mt-6">
         <div className="border-2 border-red-700 rounded-lg p-4 bg-red-900/20">
           <h3 className="text-xl font-bold text-red-300 mb-3">Danger Zone</h3>
-          <button className="text-red-400 hover:bg-red-900/50 hover:transition flex items-center gap-2 cursor-pointer border rounded p-1">
+          <button
+           onClick={handledelete}
+           className="text-red-400 hover:bg-red-900/50 hover:transition flex items-center gap-2 cursor-pointer border rounded p-1">
             <FaTrash /> Delete Account
           </button>
           <p className="text-sm text-red-300 mt-2">
