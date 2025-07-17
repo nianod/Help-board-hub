@@ -3,9 +3,10 @@ import { FaTrash, FaHistory } from 'react-icons/fa';
 import { supabase } from '../libs/supabaseClient';
 import { UserAuth } from '../Supabase/AuthContext'
 import UserInfo from './UserInfo';
+import DeleteAccount from './DeleteAccount'; 
 
 const UserProfile = () => {
-  
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(true)
   const [profilePosts, setProfilePosts] = useState([])
@@ -76,9 +77,14 @@ const UserProfile = () => {
   }, [])
   //Delete account
     const handledelete = () => {
-      
+      setShowDeleteModal(true)
     }
-
+    const confirmDelete = () => {
+      alert('Done')
+    }
+    const cancelDelete = () => {
+      console.log('Nice decision')
+    }
 
   return (
     <>
@@ -138,6 +144,9 @@ const UserProfile = () => {
           </p>
         </div>
       </div>
+      {showDeleteModal && (
+        <DeleteAccount onConfirm={confirmDelete} onCancel={cancelDelete}/>
+      )}
     </>
   );
 };
