@@ -4,6 +4,8 @@ import { supabase } from '../libs/supabaseClient';
 import { UserAuth } from '../Supabase/AuthContext'
 import UserInfo from './UserInfo';
 import DeleteAccount from './DeleteAccount'; 
+import DeleteContext from '../Supabase/DeleteContext';
+import { useNavigate } from 'react-router-dom'
 
 const UserProfile = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false)
@@ -14,6 +16,8 @@ const UserProfile = () => {
   const { session } = UserAuth()
   const user = session?.user
   const userId = user?.id
+
+  navigate = useNavigate()
 
   const fetchProfilePosts = async() => {
     try {
@@ -80,8 +84,9 @@ const UserProfile = () => {
       setShowDeleteModal(true)
     }
     const confirmDelete = () => {
-      //Handle delete context
-      alert('Done')
+      <DeleteContext />
+      navigate('/')
+
     }
     const cancelDelete = () => {
       console.log('Nice decision')

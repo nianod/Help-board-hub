@@ -3,7 +3,7 @@ import { supabase } from "../libs/supabaseClient"
 
 const DeleteContext = async () => {
     try{
-        const { data: { user} , error: { useError } } = await supabase.auth.getUser()
+        const { data: { user} , error: useError } = await supabase.auth.getUser()
         if( useError || !user ) {
             console.error('No such user authenticated')
             return
@@ -14,17 +14,19 @@ const DeleteContext = async () => {
 
         const { error: PostError} = await supabase
         .from('postst')
-        .delete('*')
+        .delete()
         .eq('user_id', userId)
 
         const { error: ProfileError } = await supabase
         .from('users')
-        .delete('*')
-        .eq('user_id', userId)
+        .delete()
+        .eq('id', userId)
 
         if(PostError || ProfileError) {
             console.log('A serious occured during deleting ', PostError || ProfileError)
         }
+
+        console.log('User and associated data deleted successfully')
 
     } catch(err) {
         console.log('Error occured, ', err.message)
