@@ -3,6 +3,7 @@
 :root {
   --main-background : rgba(31, 55, 100, 0.966);
   --shadow : 0px 0px 10px rgba(70, 73, 75, 0.784);
+  --shadow2 : 0px 0px 10px rgba(119, 116, 116, 0.7);
   --mini-ground: linear-gradient(to right, rgba(4, 23, 57, 0.9666), rgba(31, 55, 100, 0.966)) ; 
   --highlight-foreground: 255 255 255; 
   --glass: 255 255 255 / 0.8;
@@ -16,4 +17,7 @@ body {
 }
 .container {
   box-shadow: var(--shadow);
+}
+.shadow {
+  box-shadow: var(--shadow2);
 }
