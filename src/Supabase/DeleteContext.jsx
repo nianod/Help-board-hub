@@ -1,11 +1,9 @@
-import React from 'react'
+//Delete user details
+import { supabase } from "../libs/supabaseClient"
 
-const DeleteContext = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+const DeleteContext = async () => {
+    const { data: { user} , error: { useError } } = await supabase.auth.getUser()
+    
 }
 
 export default DeleteContext
