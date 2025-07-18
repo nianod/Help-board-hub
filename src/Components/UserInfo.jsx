@@ -9,6 +9,7 @@ const UserProfile = () => {
   const [userRole, setUserRole] = useState('');
   const [userData, setUserData] = useState(null)
   const [error, setError] = useState('')
+  const [loadingUserData, setLoadingUserData] = useState(false)
 
 
   useEffect(() => {
