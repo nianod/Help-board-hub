@@ -17,7 +17,7 @@ const UserProfile = () => {
   const user = session?.user
   const userId = user?.id
 
-  navigate = useNavigate()
+  const navigate = useNavigate()
 
   const fetchProfilePosts = async() => {
     try {
@@ -83,10 +83,15 @@ const UserProfile = () => {
     const handledelete = () => {
       setShowDeleteModal(true)
     }
-    const confirmDelete = () => {
-      <DeleteContext />
-      navigate('/')
-
+    const confirmDelete = async () => {
+      try{
+        await DeleteContext()
+        console.log('deleted successfully')
+        navigate('/')
+      } catch (error) {
+        console.error('Account could not be deleted', error)
+        setError(error)
+      }
     }
     const cancelDelete = () => {
       console.log('Nice decision')
