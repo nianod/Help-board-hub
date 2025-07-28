@@ -114,9 +114,9 @@ const UserProfile = () => {
                <h1 className='text-center text-white'>Your Previous Posts</h1>
                 {loading && <p>Loading posts...</p>}
                 {error && <p className='text-red-500'>Error: {error}</p>}
-                {profilePosts.length === 0 && !loading && <p className='text-gray-400 text-center'>No posts found.
+                {profilePosts.length === 0 && !loading && <p className='text-gray-400 text-center'>No posts found. 
                   <button onClick={makepost}>
-                    <span className=''>Make your first request</span>
+                    <span className='text-blue-400 cursor-pointer'> Make your first request</span>
                   </button>
                 </p>}
                 {profilePosts.map((post) => (
