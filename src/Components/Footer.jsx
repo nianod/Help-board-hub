@@ -1,15 +1,25 @@
 import { Link } from 'react-router-dom'
-
+import { FaFacebook, FaWhatsapp, FaInstagram, FaTwitter, FaTiktok, FaSnapchat, FaLinkedin } from 'react-icons/fa'
 
 const rootImg = {
     imageurl: "/download.jpg"
 }
 const footerContents = [
-    {label: "Terms", href: "/404" },
+    {label: "Terms", href: "/404"},
     {label: "Privacy", href: "/404"},
     {label: "Security", href: "/404"},
     {label: "Policy", href: "/404"},
     {label: "contact", href: "/404"}
+]
+
+const icons = [
+  {icon : <FaWhatsapp />, href:"#"},
+  {icon : <FaFacebook />, href:"#"},
+  {icon : <FaInstagram />, href:"#"},
+  {icon : <FaSnapchat />, href:"#"},
+  {icon : <FaTwitter />, href:"#"},
+  {icon : <FaTiktok />, href:"#"},
+  {icon : <FaLinkedin />, href:""}
 ]
  
 const Footer = () => {
@@ -42,6 +52,11 @@ const Footer = () => {
       </div>
         <div>
           <p>Follow us on:</p>
+          {icons.map((item, index) => (
+            <p key={index}>
+              {item.icon}
+            </p>
+          ))}
         </div>      
     </div>
     
