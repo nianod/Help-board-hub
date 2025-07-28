@@ -63,7 +63,7 @@ const Post = ({ onCancel, onAddPost }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mb-20 mt-20 overflow-y-auto max-h-[600px]">
+    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mb-20 mt-20 overflow-y-auto max-h-[570px]">
       <h2 className="text-2xl font-bold text-center mb-6">Post New Update</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">

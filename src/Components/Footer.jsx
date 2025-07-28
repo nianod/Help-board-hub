@@ -48,14 +48,13 @@ const Footer = () => {
         </ul>
 
         <div className='flex items-center gap-3'>
-          <span className='text-sm'>Follow us:</span>
+          <p className='text-sm'>Follow us on:</p>
           {icons.map((item, index) => (
-            <a key={index} href={item.href} className='text-lg hover:text-blue-400 transition duration-200'>
+            <a key={index} href={item.href} className='text-lg hover:text-blue-400 transition duration-200 flex'>
               {item.icon}
             </a>
           ))}
         </div>
-
       </div>
     </footer>
   )
