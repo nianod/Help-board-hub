@@ -72,7 +72,7 @@ const SeekerDashboard = () => {
       </button>
 
       {showPostModal && (
-        <div className="fixed inset-0 z-100 flex items-center justify-center bg-black bg-opacity-30">
+        <div className="fixed inset-0 z-100 flex items-center justify-center bg-opacity-90 backdrop-blur-md">
           <Post 
             onCancel={() => setShowPostModal(false)}
             onAddPost={handleAddPost}  

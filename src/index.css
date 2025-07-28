@@ -11,6 +11,7 @@
   --input: 190 190 190;
   --ring: 51 51 51;
   --radius: 0.75rem;
+  --bg: #2d2c2c;
 }
 body {
   background: var(--mini-ground);
