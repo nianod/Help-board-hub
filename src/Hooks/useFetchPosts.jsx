@@ -15,7 +15,6 @@ const useFetchPosts = (userId) => {
                     .select('*')
                     .order('created_at', { ascending: false })
 
-                
                 if (userId) {
                     query = query.eq("user_id", userId)
                 }

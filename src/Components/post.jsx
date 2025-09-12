@@ -25,7 +25,7 @@ const Post = ({ onCancel, onAddPost }) => {
         contact_detail: contactDetails,
         user_name: name,
         user_id: user.id,
-      };
+      }
 
       const { data, error } = await supabase
         .from("postst")
@@ -113,6 +113,7 @@ const Post = ({ onCancel, onAddPost }) => {
             <option value="Electronics">Electronics</option>
             <option value="Academic">Academic</option>
             <option value="Errands">Errands</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         <div className="mt-4 mb-4">
