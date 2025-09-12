@@ -95,7 +95,7 @@ const handleSubmit = async (event) => {
         onSubmit={handleSubmit} 
         className='container bg-blue-800 gap-1 mt-5 max-w-sm mx-auto p-4 flex flex-col text-white rounded-xl shadow-sm'
       >
-        <h2 className='text-white font-bold text-center text-2xl'>Sign Up</h2>
+        <h2 className='text-white font-bold text-center text-2xl'>Sign Up {role}</h2>
         
         <div className="relative mb-2">
           <label className="block mb-1">Email:</label>
