@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
-export const AiLayout = ({ AiMenu, setAiMenu }) => {
+export const AiLayout = ({ aiMenuOpen, setAiMenuOpen }) => {
+  const [isChat, setIsChat] = useState(false);
+
   return (
     <div>
-      {AiMenu && (
+      {aiMenuOpen && (
         <div
           className="fixed inset-0 backdrop-blur-sm z-40"
-          onClick={() => setAiMenu(false)}
+          onClick={() => setAiMenuOpen(false)}
         ></div>
       )}
       <div
@@ -14,18 +16,51 @@ export const AiLayout = ({ AiMenu, setAiMenu }) => {
         bg-gradient-to-b from-blue-950 via-blue-900 to-blue-950
         shadow-2xl shadow-blue-900/50 z-50 transform 
         transition-transform duration-300 ease-in-out
-        ${AiMenu ? "translate-x-0" : "translate-x-full"}`}
+        ${aiMenuOpen ? "translate-x-0" : "translate-x-full"}`}
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          onClick={() => setAiMenu(false)}
-          className="absolute top-3 right-3 text-2xl text-gray-300 cursor-pointer hover:text-white"
+          onClick={() => {
+            if (isChat) {
+              setIsChat(false) 
+            } else {
+              setAiMenuOpen(false) 
+            }
+          }}
+          className="absolute top-2 right-3 text-2xl text-gray-300 cursor-pointer hover:text-white"
         >
-          ×
+          {isChat ? "←" : "×"}
         </button>
-      </div>
-      <div>
-        <h2>Wel</h2>
+
+        <div className="mt-10 p-4">
+          {!isChat ? (
+            <>
+              <h2 className="text-center text-xl font-semibold text-amber-100">
+                Welcome to Help Hub AI assistant
+              </h2>
+              <p className="text-center text-sm text-gray-300 max-w-xs m-auto mt-20">
+                Ask minor and non-technical assists here. You can get quick
+                guidance, tips, or clarifications without needing full technical
+                support.
+              </p>
+              <button
+                onClick={() => setIsChat(true)}
+                className="bg-blue-600 p-3 font-bold text-white rounded-lg px-3 flex justify-center cursor-pointer transition hover:bg-blue-700 m-auto mt-6"
+              >
+                Use AI
+              </button>
+            </>
+          ) : (
+            <>
+              <h2 className="text-center text-xl font-semibold text-amber-100 mb-2">
+                Ask AI
+              </h2>
+              <div>
+                 
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

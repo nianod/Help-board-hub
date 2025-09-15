@@ -10,7 +10,7 @@ const SeekerDashboard = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null)
-  const [AiMenu, setAiMenu] = useState(false)
+  const [aiMenuOpen, setAiMenuOpen] = useState(false)
 
   const navigate = useNavigate()
 
@@ -75,7 +75,7 @@ const SeekerDashboard = () => {
           Post help request
         </button>
         <button
-          onClick={() => setAiMenu(true)}
+          onClick={() => setAiMenuOpen(true)}
           className="flex flex-col items-center justify-center p-3 bg-blue-600 rounded hover:bg-blue-700 transition-colors mt-20 cursor-pointer"
         >
           <span className="text-xl font-bold text-white">AI Assistant</span>
@@ -166,7 +166,7 @@ const SeekerDashboard = () => {
           ))
         )}
       </div>
-      <AiLayout AiMenu={AiMenu} setAiMenu={setAiMenu} />
+      <AiLayout aiMenuOpen={aiMenuOpen } setAiMenuOpen={setAiMenuOpen} />
     </div>
   );
 };
