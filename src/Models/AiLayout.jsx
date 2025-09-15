@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AiChat from "./AiChat";
 
 export const AiLayout = ({ aiMenuOpen, setAiMenuOpen }) => {
   const [isChat, setIsChat] = useState(false);
@@ -56,7 +57,7 @@ export const AiLayout = ({ aiMenuOpen, setAiMenuOpen }) => {
                 Ask AI
               </h2>
               <div>
-                 
+                 <AiChat />
               </div>
             </>
           )}
