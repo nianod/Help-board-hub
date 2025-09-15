@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../libs/supabaseClient';  
 import Post from '../Components/post';
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate, Link } from 'react-router-dom'
+import { FaMicrochip } from 'react-icons/fa'
+import { AiLayout } from '../Models/AiLayout';
+ 
 const SeekerDashboard = () => {
   const [showPostModal, setShowPostModal] = useState(false);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null)
+  const [AiMenu, setAiMenu] = useState(false)
 
   const navigate = useNavigate()
 
@@ -64,35 +67,53 @@ const SeekerDashboard = () => {
       }
   return (
     <div className="relative min-h-screen p-4 pb-25">
-      <button
-        onClick={() => setShowPostModal(true)}
-        className="p-3 bg-red-400 rounded mt-20 m-4 cursor-pointer font-bold hover:bg-red-500 transition-colors"
-      >
-        Post help request
-      </button>
-
+      <div className="flex justify-between">
+        <button
+          onClick={() => setShowPostModal(true)}
+          className="p-3 bg-red-400 rounded mt-20 m-4 cursor-pointer font-bold hover:bg-red-500 transition-colors"
+        >
+          Post help request
+        </button>
+        <button
+          onClick={() => setAiMenu(true)}
+          className="flex flex-col items-center justify-center p-3 bg-blue-600 rounded hover:bg-blue-700 transition-colors mt-20 cursor-pointer"
+        >
+          <span className="text-xl font-bold text-white">AI Assistant</span>
+          <span className="flex items-center gap-1 text-[11px] font-semibold text-white">
+            Ask AI <FaMicrochip className="text-xs" />
+          </span>
+        </button>
+      </div>
+      
       {showPostModal && (
         <div className="fixed inset-0 z-100 flex items-center justify-center bg-opacity-90 backdrop-blur-md">
-          <Post 
+          <Post
             onCancel={() => setShowPostModal(false)}
-            onAddPost={handleAddPost}  
+            onAddPost={handleAddPost}
           />
         </div>
       )}
 
       <div className="mt-8 space-y-4">
         {loading ? (
-          <p className='text-white'>Loading posts...</p>
+          <p className="text-white">Loading posts...</p>
         ) : error ? (
           <p className="text-red-500">{error}</p>
         ) : posts.length === 0 ? (
-          <p className='text-white'>You have No posts yet. Make your first to post!</p>
+          <p className="text-white">
+            You have No posts yet. Make your first to post!
+          </p>
         ) : (
-          posts.map(post => (
-            <div key={post.id} className="border p-4 rounded-lg shadow-sm bg-white">
-              <h3 className="font-bold text-lg capitalize">Category: {post.category}</h3>
-              <p className="mt-2 text-gray-700">{post.text}</p>  
-              <p className='mt-2'>Posted by: {post.user_name}</p>
+          posts.map((post) => (
+            <div
+              key={post.id}
+              className="border p-4 rounded-lg shadow-sm bg-white"
+            >
+              <h3 className="font-bold text-lg capitalize">
+                Category: {post.category}
+              </h3>
+              <p className="mt-2 text-gray-700">{post.text}</p>
+              <p className="mt-2">Posted by: {post.user_name}</p>
               {post.contact_method && (
                 <small className="block mt-1 text-gray-500">
                   Contact via: {post.contact_method} - {post.contact_details}
@@ -103,21 +124,39 @@ const SeekerDashboard = () => {
                   Posted on: {new Date(post.created_at).toLocaleString()}
                 </small>
               )}
-              <div className='flex justify-between'>
+              <div className="flex justify-between">
                 {post.accepted_by ? (
-                  <p className='text-green-500 font-semibold'>Accepted by:
-                   <a 
-                    href={`mailto:${post.accepted_by}?subject=regarding your accepted post (ID: ${post.id}) &body=${encodeURIComponent}(Hi there you young Man!)`}
-                    className='text-blue-500 cursor-pointer hover:underline'>{post.accepted_by}</a></p>
-                ) :(
-                  <p className='text-red-500 font-semibold'>Pending accept...</p>
+                  <p className="text-green-500 font-semibold">
+                    Accepted by:
+                    <a
+                      href={`mailto:${post.accepted_by}?subject=regarding your accepted post (ID: ${post.id}) &body=${encodeURIComponent}(Hi there you young Man!)`}
+                      className="text-blue-500 cursor-pointer hover:underline"
+                    >
+                      {post.accepted_by}
+                    </a>
+                  </p>
+                ) : (
+                  <p className="text-red-500 font-semibold">
+                    Pending accept...
+                  </p>
                 )}
-                <div className='gap-2 flex'>
-                  <button onClick={() => viewPost(post)} className='p-1 rounded bg-blue-800 text-white cursor-pointer hover:bg-blue-700'>View</button>
+                <div className="gap-2 flex">
                   <button
-                   onClick={!post.accepted_by? () => deletePost(post.id) : undefined} 
-                   disabled={!!post.accepted_by} 
-                   className={`p-1 rounded text-white  ${post.accepted_by ? 'bg-gray-400 cursor-not-allowed' : 'bg-red-800 hover:bg-red-700 cursor-pointer' }`}
+                    onClick={() => viewPost(post)}
+                    className="p-1 rounded bg-blue-800 text-white cursor-pointer hover:bg-blue-700"
+                  >
+                    View
+                  </button>
+                  <button
+                    onClick={
+                      !post.accepted_by ? () => deletePost(post.id) : undefined
+                    }
+                    disabled={!!post.accepted_by}
+                    className={`p-1 rounded text-white  ${
+                      post.accepted_by
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-red-800 hover:bg-red-700 cursor-pointer"
+                    }`}
                   >
                     Delete
                   </button>
@@ -127,6 +166,7 @@ const SeekerDashboard = () => {
           ))
         )}
       </div>
+      <AiLayout AiMenu={AiMenu} setAiMenu={setAiMenu} />
     </div>
   );
 };
