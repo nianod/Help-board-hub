@@ -56,20 +56,22 @@ export const AiLayout = ({ aiMenuOpen, setAiMenuOpen }) => {
             <>
               <div className="font-semibold mb-2 bg-black p-4">
                 <div className="  flex items-center gap-6">
-                <div className="text-white text-xl flex items-center gap-1">
-                  Ask AI{" "}
-                  <span className="text-white">
-                    <FaRobot />
+                  <div className="text-white text-xl flex items-center gap-1">
+                    Ask AI{" "}
+                    <span className="text-white">
+                      <FaRobot />
+                    </span>
+                  </div>
+                  <h2 className="text-sm text-gray-500">
+                    Help hub AI assistant is now available
+                  </h2>
+                </div>
+                <div className="items-center gap-1 flex">
+                  <span className="absolute inline-flex w-2.5 h-2.5 rounded-full bg-green-400 opacity-75 animate-ping "></span>
+                  <span className="relative inline-flex rounded-full w-2.5 h-2.5 bg-green-500 ">
+                   
                   </span>
-                </div>
-                <h2 className="text-sm text-gray-500">
-                  Help hub AI assistant is now available
-                </h2>
-
-                </div>
-                                <div className="  flex">
-                  <span className="  inline-flex h-4 w-4 rounded-full bg-green-400 opacity-75 animate-ping"></span>
-                  <span className="relative inline-flex rounded-full h-4 w-4 bg-green-500 text-white">online</span>
+                   <span className="text-white text-sm flex items-center">online</span>
                 </div>
               </div>
               <div>
