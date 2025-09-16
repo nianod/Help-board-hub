@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AiChat from "./AiChat";
+import { FaRobot } from "react-icons/fa";
 
 export const AiLayout = ({ aiMenuOpen, setAiMenuOpen }) => {
   const [isChat, setIsChat] = useState(false);
@@ -23,9 +24,9 @@ export const AiLayout = ({ aiMenuOpen, setAiMenuOpen }) => {
         <button
           onClick={() => {
             if (isChat) {
-              setIsChat(false) 
+              setIsChat(false);
             } else {
-              setAiMenuOpen(false) 
+              setAiMenuOpen(false);
             }
           }}
           className="absolute top-2 right-3 text-2xl text-gray-300 cursor-pointer hover:text-white"
@@ -33,7 +34,7 @@ export const AiLayout = ({ aiMenuOpen, setAiMenuOpen }) => {
           {isChat ? "←" : "×"}
         </button>
 
-        <div className="mt-10 p-4">
+        <div className="mt-10 ">
           {!isChat ? (
             <>
               <h2 className="text-center text-xl font-semibold text-amber-100">
@@ -53,11 +54,26 @@ export const AiLayout = ({ aiMenuOpen, setAiMenuOpen }) => {
             </>
           ) : (
             <>
-              <h2 className="text-center text-xl font-semibold text-amber-100 mb-2">
-                Ask AI
-              </h2>
+              <div className="font-semibold mb-2 bg-black p-4">
+                <div className="  flex items-center gap-6">
+                <div className="text-white text-xl flex items-center gap-1">
+                  Ask AI{" "}
+                  <span className="text-white">
+                    <FaRobot />
+                  </span>
+                </div>
+                <h2 className="text-sm text-gray-500">
+                  Help hub AI assistant is now available
+                </h2>
+
+                </div>
+                                <div className="  flex">
+                  <span className="  inline-flex h-4 w-4 rounded-full bg-green-400 opacity-75 animate-ping"></span>
+                  <span className="relative inline-flex rounded-full h-4 w-4 bg-green-500 text-white">online</span>
+                </div>
+              </div>
               <div>
-                 <AiChat />
+                <AiChat />
               </div>
             </>
           )}
