@@ -7,7 +7,7 @@ const AiChat = () => {
 
   const session = {
     user: {
-      user_metadata: { full_name: "Me" }, 
+      user_metadata: { full_name: "user" }, 
     },
   };
 
