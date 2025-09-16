@@ -16,7 +16,7 @@ export const AiLayout = ({ aiMenuOpen, setAiMenuOpen }) => {
       <div
         className={`fixed top-0 right-0 h-screen w-70 sm:w-96 md:w-[30%] 
         bg-gradient-to-b from-blue-950 via-blue-900 to-blue-950
-        shadow-2xl shadow-blue-900/50 z-50 transform 
+        shadow-2xl shadow-blue-900/50 z-90 transform 
         transition-transform duration-300 ease-in-out
         ${aiMenuOpen ? "translate-x-0" : "translate-x-full"}`}
         onClick={(e) => e.stopPropagation()}
