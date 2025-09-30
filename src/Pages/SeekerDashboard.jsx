@@ -13,7 +13,7 @@ const SeekerDashboard = () => {
   const [aiMenuOpen, setAiMenuOpen] = useState(false)
 
 
-  
+
   const navigate = useNavigate()
 
    useEffect(() => {
@@ -78,9 +78,9 @@ const SeekerDashboard = () => {
         </button>
         <button
           onClick={() => setAiMenuOpen(true)}
-          className="flex flex-col items-center justify-center p-3 transition-colors mt-20 cursor-pointer"
+          className="back flex flex-col items-center justify-center p-3 transition-colors mt-20 cursor-pointer rounded"
         >
-          <span className="back text-xl font-bold text-white">AI Assistant</span>
+          <span className=" text-xl font-bold text-white">AI Assistant</span>
           <span className="flex items-center gap-1 text-[11px] font-semibold text-white">
             Ask AI <FaMicrochip className="text-xs" />
           </span>
