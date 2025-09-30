@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaPaperPlane } from "react-icons/fa";
+import { FaArrowUp } from "react-icons/fa";
 
 const AiChat = () => {
    const [messages, setMessages] = useState([])
@@ -21,6 +21,7 @@ const AiChat = () => {
       user_name: session.user.user_metadata.full_name,
       message: input,
       timestamp: new Date().toLocaleTimeString(),
+      avatar: session.user.user_metadata.avatar_Url
      };
 
     setMessages((prev) => [...prev, newMessage]);
@@ -76,13 +77,13 @@ const AiChat = () => {
               type="submit"
               className="text-white flex gap-1 items-center bg-black p-2 rounded h-full cursor-pointer"
             >
-              Send <FaPaperPlane />
+              Send < FaArrowUp />
             </button>
           </form>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default AiChat;
