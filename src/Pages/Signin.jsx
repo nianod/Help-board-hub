@@ -38,10 +38,10 @@ const handleSubmit = async (event) => {
         const storedRole = localStorage.getItem('role')
         if(storedRole === 'helper') {
             navigate('/dashboard/helper')
-            // localStorage.getItem('role', 'helper')
+             
         } else if(storedRole === 'seeker') {
             navigate('/dashboard/seeker')
-            // localStorage.getItem('role', 'seeker')
+            
         } else {
             navigate('/')
         }

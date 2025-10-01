@@ -33,8 +33,14 @@ const NewReset = () => {
             setLoading(fasle)
             return
         }
-        alert('password updated successfully')
-        navigate('/login')
+        // alert('password updated successfully')
+
+        if(role === 'seeker') {
+          navigate('/dashboard/seeker')
+        } else if(role === 'helper') {
+          navigate('/dashboard/helper')
+        }
+       
         setPassword('')
         SetConfirmPassword('')
     }
