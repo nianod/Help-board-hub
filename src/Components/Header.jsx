@@ -1,93 +1,112 @@
 import { useEffect, useState, useRef } from 'react';
 import LogoutConfirmation from './Logout';
-import { FaSignOutAlt, FaUserCircle, FaUser } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'; 
+import { FaSignOutAlt, FaUserCircle, FaUser, FaBell } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../Supabase/AuthContext';
 
 const navContentes = {
   imag: "/download.jpg",
   title: "Help Hub"
-}
+};
 
 const Header = () => {
   const [sideMenu, setSideMenu] = useState(false);
-  const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false)
-  const navigate = useNavigate()
-  const menuRef = useRef(null)
-  const userIconRef = useRef(null)  
+  const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
+  const [hasNotifications, setHasNotifications] = useState(true); // for example
+  const navigate = useNavigate();
+  const menuRef = useRef(null);
+  const userIconRef = useRef(null);
 
-  const { session, signOut } = UserAuth()
+  const { session, signOut } = UserAuth();
 
   useEffect(() => {
     const clickOutside = (event) => {
-       if (
+      if (
         menuRef.current &&
         !menuRef.current.contains(event.target) &&
         userIconRef.current &&
         !userIconRef.current.contains(event.target)
       ) {
-        setSideMenu(false)
+        setSideMenu(false);
       }
-    }
-    document.addEventListener("mousedown", clickOutside)
-    return () => document.removeEventListener("mousedown", clickOutside)
-  }, [])
+    };
+    document.addEventListener('mousedown', clickOutside);
+    return () => document.removeEventListener('mousedown', clickOutside);
+  }, []);
 
-  const toggles = () => {
-    setSideMenu(prev => !prev);
-  }
+  const toggles = () => setSideMenu((prev) => !prev);
 
   const handleLogout = () => {
     setShowLogoutConfirmation(true);
     setSideMenu(false);
-  }
-
+  };
 
   const confirmLogout = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     try {
-      await signOut() 
-      navigate('/')
-      setShowLogoutConfirmation(false)
-    } catch(err) {
-      console.err(err)
+      await signOut();
+      navigate('/');
+      setShowLogoutConfirmation(false);
+    } catch (err) {
+      console.error(err);
     }
-  }
+  };
 
- 
-  const cancelLogout = () => {
-    setShowLogoutConfirmation(false)
-
-  }
+  const cancelLogout = () => setShowLogoutConfirmation(false);
 
   return (
     <>
-<div className='bg-blue-700 flex items-center justify-between p-2 fixed top-0 left-0 right-0 z-50'>
-        <div className='flex items-center gap-3'>
+      <header className="bg-blue-700 flex items-center justify-between p-2 fixed top-0 left-0 right-0 z-50 shadow-lg backdrop-blur-md">
+      
+        <div className="flex items-center gap-3">
           <img
             src={navContentes.imag}
-            alt={"Help hub Logo"}
-            className='rounded-full object-cover h-14 w-14'
+            alt="Help Hub Logo"
+            className="rounded-full object-cover h-12 w-12"
           />
-          <h1 className='text-white text-2xl font-bold'>{navContentes.title}</h1>
+          <h1 className="text-white text-2xl font-bold tracking-wide">{navContentes.title}</h1>
         </div>
-        <div className='relative'>
+    
+        <div className="flex items-center gap-4 relative">
+        
+          <button
+            className="relative p-2 cursor-pointer text-white hover:text-yellow-300 transition"
+            aria-label="Notifications"
+          >
+            <FaBell size={18} />
+            {hasNotifications && (
+              <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"></span>
+            )}
+          </button>
+
           <button
             onClick={toggles}
-            className='text-white p-2 cursor-pointer'
+            className="text-white p-2 cursor-pointer hover:text-yellow-300 transition"
             ref={userIconRef}
           >
-            <FaUserCircle size={20} />
+            {session?.user?.user_metadata?.avatar_url ? (
+              <img
+                src={session.user.user_metadata.avatar_url}
+                alt="User Avatar"
+                className="rounded-full h-8 w-8 object-cover border border-yellow-400"
+              />
+            ) : (
+              <FaUserCircle size={22} />
+            )}
           </button>
+
+         
           {sideMenu && (
             <div
               ref={menuRef}
-              className='absolute right-0 w-40 bg-white rounded p-2 z-50 shadow-md mt-1'
+              className="absolute right-0 top-10 w-44 bg-white rounded-md shadow-lg p-2 text-gray-700"
             >
+              <div className="border-b pb-2 mb-2 text-sm text-gray-500 truncate">
+                {session?.user?.email || 'Guest User'}
+              </div>
               <Link
                 to="/userProfile"
-                className='gap-1 px-4 py-2 hover:bg-gray-100 rounded flex items-center'
+                className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded"
                 onClick={() => setSideMenu(false)}
               >
                 <FaUser />
@@ -95,7 +114,7 @@ const Header = () => {
               </Link>
               <button
                 onClick={handleLogout}
-                className='w-full gap-1 text-left px-4 py-2 hover:bg-gray-100 rounded flex items-center cursor-pointer'
+                className="w-full flex items-center gap-2 text-left px-3 py-2 hover:bg-gray-100 rounded cursor-pointer"
               >
                 <FaSignOutAlt />
                 Logout
@@ -103,12 +122,13 @@ const Header = () => {
             </div>
           )}
         </div>
-      </div>
+      </header>
+
       {showLogoutConfirmation && (
         <LogoutConfirmation onConfirm={confirmLogout} onCancel={cancelLogout} />
       )}
     </>
-  )
-}
+  );
+};
 
 export default Header;

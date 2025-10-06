@@ -68,7 +68,7 @@ const SeekerDashboard = () => {
         navigate('/view', { state: { post }})
       }
   return (
-    <div className="relative min-h-screen p-4 pb-25">
+    <div className="relative min-h-screen p-4 pb-10">
       <div className="flex justify-between">
         <button
           onClick={() => setShowPostModal(true)}
