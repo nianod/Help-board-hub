@@ -32,6 +32,7 @@ const Post = ({ onCancel, onAddPost }) => {
         contact_method: contact,
         contact_detail: contactDetails,
         user_name: name,
+        image: files,
         user_id: user.id,
       }
 
@@ -61,6 +62,7 @@ const Post = ({ onCancel, onAddPost }) => {
         setCategory("");
         setName("");
         onCancel();
+        setFiles("")
       }
     } catch (err) {
       console.error("Error inserting post: ", err.message);

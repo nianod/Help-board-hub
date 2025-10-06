@@ -115,6 +115,7 @@ const SeekerDashboard = () => {
                 Category: {post.category}
               </h3>
               <p className="mt-2 text-gray-700">{post.text}</p>
+              <img src={post.image} alt="photo" />
               <p className="mt-2">Posted by: {post.user_name}</p>
               {post.contact_method && (
                 <small className="block mt-1 text-gray-500">
