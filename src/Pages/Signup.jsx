@@ -70,13 +70,16 @@ const handleSubmit = async (event) => {
     } else if (role === 'seeker') {
       navigate('/dashboard/seeker');
       localStorage.setItem('role', 'seeker')
+      console.log('Seccess')
     } else {
       navigate('/');
     }
-
+    
+    console.log("User role is", role)
     } else {
       setError(result.error || "Registration failed");
     }
+
 
   } catch (err) {
     setError("Unexpected error occurred")

@@ -50,7 +50,7 @@ const SeekerDashboard = () => {
       const deletePost = async(postId) => {
         try {
           const { error } = await supabase
-          .from('postst')
+          .from('posts')
           .delete()
           .eq('id', postId)
           if (error) throw error
