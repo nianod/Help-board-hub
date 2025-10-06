@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { supabase } from "../libs/supabaseClient";
+import { FaUpload } from "react-icons/fa";
 
 const Post = ({ onCancel, onAddPost }) => {
   const [postText, setPostText] = useState("");
@@ -10,6 +11,13 @@ const Post = ({ onCancel, onAddPost }) => {
   const [warning, setWarning] = useState("");
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
+  const fileInputRef = useRef()
+
+  const handleImageUpload = () => {
+    if(fileInputRef.current) {
+      fileInputRef.current.click()
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,7 +71,7 @@ const Post = ({ onCancel, onAddPost }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md mb-20 mt-20 overflow-y-auto max-h-[570px]">
+    <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md mb-20 mt-20 overflow-y-auto max-h-[570px]">
       <h2 className="text-2xl font-bold text-center mb-6">Post New Update</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -82,7 +90,7 @@ const Post = ({ onCancel, onAddPost }) => {
         </div>
         <div className="mb-4">
           <label className="block text-sm font-medium text-black mb-2">
-            Describe your Issue
+            Describe your Issue:
           </label>
           <textarea
             value={postText}
@@ -90,13 +98,14 @@ const Post = ({ onCancel, onAddPost }) => {
             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             rows="4"
             placeholder="Description"
+            cols="30"
             required
           />
         </div>
 
         <div className="mb-1">
           <label className="block text-sm font-medium text-black mb-2">
-            Category
+            Category:
           </label>
           <select
             required
@@ -118,7 +127,7 @@ const Post = ({ onCancel, onAddPost }) => {
         </div>
         <div className="mt-4 mb-4">
           <label className="block text-sm font-medium text-black mb-2">
-            How can people contact you
+            How can people contact you:
           </label>
           <select
             id="contact"
@@ -153,12 +162,27 @@ const Post = ({ onCancel, onAddPost }) => {
         <label className="block mb-2 text-black text-sm font-medium">
           Upload Image <span className="text-gray-400">(optional)</span>
         </label>
-        <input
-          type="file"
-          onChange={(e) => setFiles(e.target.value)}
-          accept="image/*"
-          className="bg-blue-400 p-2 rounded"
-        />
+        <div>
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            style={{ display: "none" }}
+            onChange={(e) => setFiles(e.target.files?.[0])}
+          />
+          <button
+            type="button"
+            className="flex items-center px-4 py-2 border border-blue-400 cursor-pointer rounded bg-white text-blue-600 hover:bg-blue-50 transition"
+            onClick={handleImageUpload}
+          >
+            <span className="mr-2"><FaUpload /></span>
+            Add file
+          </button>
+          {files && (
+            <span className="ml-3 text-gray-600 text-sm">{files.name}</span>
+          )}
+        </div>
+
         {warning && (
           <p className="text-red-500 mt-3 flex items-center justify-center">
             {" "}

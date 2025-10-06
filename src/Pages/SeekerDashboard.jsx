@@ -129,7 +129,7 @@ const SeekerDashboard = () => {
               <div className="flex justify-between">
                 {post.accepted_by ? (
                   <p className="text-green-500 font-semibold">
-                    Accepted by:
+                    Accepted by: {" "}
                     <a
                       href={`mailto:${post.accepted_by}?subject=regarding your accepted post (ID: ${post.id}) &body=${encodeURIComponent}(Hi there you young Man!)`}
                       className="text-blue-500 cursor-pointer hover:underline"
