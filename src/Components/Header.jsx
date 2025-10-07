@@ -3,6 +3,8 @@ import LogoutConfirmation from './Logout';
 import { FaSignOutAlt, FaUserCircle, FaUser, FaBell } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { UserAuth } from '../Supabase/AuthContext';
+import * as motion from 'motion/react-client'
+import { scale } from 'motion';
 
 const navContentes = {
   imag: "/download.jpg",
@@ -54,6 +56,12 @@ const Header = () => {
 
   const cancelLogout = () => setShowLogoutConfirmation(false);
 
+  const box = {
+    width: 2 ,
+    height: 2 ,
+    borderRadius: 5,
+  }
+
   return (
     <>
       <header className="bg-blue-700 flex items-center justify-between p-2 fixed top-0 left-0 right-0 z-50 shadow-lg backdrop-blur-md">
@@ -69,15 +77,20 @@ const Header = () => {
     
         <div className="flex items-center gap-4 relative">
         
-          <button
+          <motion.button
             className="relative p-2 cursor-pointer text-white hover:text-yellow-300 transition"
             aria-label="Notifications"
+              whileHover={{ scale: 1.2 }}
+              whileTop={{ scale: 0.8 }}
+              style={box}
           >
             <FaBell size={18} />
             {hasNotifications && (
-              <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"></span>
+              <span
+               className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"
+              ></span>
             )}
-          </button>
+          </motion.button>
 
           <button
             onClick={toggles}
