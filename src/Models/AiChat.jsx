@@ -2,37 +2,35 @@ import React, { useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
 
 const AiChat = () => {
-   const [messages, setMessages] = useState([])
-   const [input, setInput] = useState("")
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState("");
 
   const session = {
     user: {
-      user_metadata: { full_name: "user" }, 
+      user_metadata: { full_name: "user" },
     },
   };
 
   const send = (e) => {
     e.preventDefault();
-
     if (!input.trim()) return;
 
-   
     const newMessage = {
       user_name: session.user.user_metadata.full_name,
       message: input,
       timestamp: new Date().toLocaleTimeString(),
-      avatar: session.user.user_metadata.avatar_Url
-     };
+    };
 
     setMessages((prev) => [...prev, newMessage]);
-    setInput("");  
+    setInput("");
   };
 
   return (
-    <div className=" p-5">
-      <div className="border w-full  border-gray-500 rounded flex flex-col">
-        
-        <div className="p-3 h-[350px] flex flex-col overflow-y-auto flex-grow">
+  
+    <div className="flex flex-col justify-between h-[calc(100vh-120px)] p-4">
+  
+      <div className="border border-gray-500 rounded flex flex-col flex-grow overflow-hidden">
+        <div className="p-3 flex flex-col overflow-y-auto flex-grow">
           {messages.map((msg, index) => {
             const isMyMessage =
               msg?.user_name === session?.user?.user_metadata?.full_name;
@@ -64,26 +62,26 @@ const AiChat = () => {
             );
           })}
         </div>
-        <div className="mt-3 p-3 border-t-[1.5px] border-gray-700">
-          <form onSubmit={send} className="gap-5 flex flex-col sm:flex-row">
+        <div className="p-3 border-t border-gray-700">
+          <form onSubmit={send} className="flex gap-2">
             <input
               type="text"
-              className="p-2 w-full bg-[#363535] rounded text-white"
+              className="p-2 flex-grow bg-[#363535] rounded text-white"
               placeholder="Type your message..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
             />
             <button
               type="submit"
-              className="text-white flex gap-1 items-center bg-black p-2 rounded h-full cursor-pointer"
+              className="text-white flex gap-1 items-center bg-black p-2 rounded"
             >
-              Send < FaArrowUp />
+              Send <FaArrowUp />
             </button>
           </form>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default AiChat;
