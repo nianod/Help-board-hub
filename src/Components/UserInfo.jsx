@@ -55,22 +55,22 @@ const UserProfile = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-white">
           <div>
             <h3 className="font-semibold text-gray-300">Username</h3>
-            <p>{userData?.username || user?.user_metadata?.username || 'Not set'}</p>
+            <p className="text-amber-300">{userData?.username || user?.user_metadata?.username || 'Not set'}</p>
           </div>
           
           <div>
             <h3 className="font-semibold text-gray-300">Email</h3>
-            <p>{user?.email}</p>
+            <p className="text-amber-300">{user?.email}</p>
           </div>
           
           <div>
             <h3 className="font-semibold text-gray-300">Account Type</h3>
-            <p className="capitalize">{userRole}</p>
+            <p className="capitalize text-amber-300">{userRole}</p>
           </div>
           
           <div>
             <h3 className="font-semibold text-gray-300">Member Since</h3>
-            <p>{new Date(user?.created_at).toLocaleDateString()}</p>
+            <p className="text-amber-300">{new Date(user?.created_at).toLocaleDateString()}</p>
           </div>
         </div>
       </div>

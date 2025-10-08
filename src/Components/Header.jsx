@@ -72,13 +72,14 @@ const Header = () => {
             alt="Help Hub Logo"
             className="rounded-full object-cover h-12 w-12"
           />
-          <h1 className="text-white text-2xl font-bold tracking-wide">{navContentes.title}</h1>
+          {/* <Link to={`${role ==='seeker' ? "/dashboard/seeker" : "/dashboard/helper"}`} className="text-white text-2xl font-bold tracking-wide">{navContentes.title}</Link> */}
+           <p className="text-white text-2xl font-bold tracking-wide">{navContentes.title}</p>
         </div>
     
-        <div className="flex items-center gap-4 relative">
+        <div className="flex items-center gap-3">
         
           <motion.button
-            className="relative p-2 cursor-pointer text-white hover:text-yellow-300 transition"
+            className="relative mb-3 p-2 cursor-pointer text-white hover:text-yellow-300 transition"
             aria-label="Notifications"
               whileHover={{ scale: 1.2 }}
               whileTop={{ scale: 0.8 }}

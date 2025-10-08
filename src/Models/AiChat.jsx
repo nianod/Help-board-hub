@@ -9,7 +9,8 @@ const AiChat = () => {
     user: {
       user_metadata: { full_name: "user" },
     },
-  };
+  }
+
 
   const send = (e) => {
     e.preventDefault();
@@ -26,9 +27,7 @@ const AiChat = () => {
   };
 
   return (
-  
     <div className="flex flex-col justify-between h-[calc(100vh-120px)] p-4">
-  
       <div className="border border-gray-500 rounded flex flex-col flex-grow overflow-hidden">
         <div className="p-3 flex flex-col overflow-y-auto flex-grow">
           {messages.map((msg, index) => {
@@ -85,3 +84,4 @@ const AiChat = () => {
 };
 
 export default AiChat;
+
