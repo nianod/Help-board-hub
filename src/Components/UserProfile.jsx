@@ -79,7 +79,8 @@ const UserProfile = () => {
   useEffect(() => {
     fetchRole()
   }, [])
-  //Delete account
+
+  //Delete account sectioin
     const handledelete = () => {
       setShowDeleteModal(true)
     }
@@ -104,7 +105,7 @@ const UserProfile = () => {
   return (
     <>
       <div className="mt-15 justify-center flex ">
-        <h2 className='mt-6 text-white font-bold text-2xl'>Welcome to your Profile,
+        <h2 className='mt-6 text-white font-bold text-2xl'>Welcome to your Profile {" "}
            <span className="capitalize text-3xl text-blue-200">{user?.user_metadata?.username || user?.email}</span></h2>
       </div>
 
@@ -120,8 +121,8 @@ const UserProfile = () => {
                   </button>
                 </p>}
                 {profilePosts.map((post) => (
-                  <div key={post.id} className="bg-amber-500 text-green-600 p-4 rounded mb-2">
-                    <span>{post.category} Category</span>
+                  <div key={post.id} className="bg-[#556576] shadow-2xl text-[#f5e7e7] p-4 rounded mb-2">
+                    <span className='font-semibold'>{post.category} Category</span>
                     <p>Description: {post.text}</p>
                     <span>Posted on: {new Date(post.created_at).toLocaleString()}</span>
                   </div>
