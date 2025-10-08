@@ -57,3 +57,4 @@ Help Seekers can post problems; Helpers can view and respond to nearby requests
 
 📱 Mobile-first PWA optimization
 
+###  <p> click <a href="https://docs.google.com/presentation/d/1nSBaypm7WMs83ZwBHs0vlnQ1Io3JaISlp1z_8bA-w6A/edit?usp=sharing">This link</a> to view the documentation</p>
