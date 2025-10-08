@@ -79,7 +79,8 @@ const UserProfile = () => {
   useEffect(() => {
     fetchRole()
   }, [])
-  //Delete account
+
+  //Delete account sectioin
     const handledelete = () => {
       setShowDeleteModal(true)
     }
