@@ -35,7 +35,6 @@ const HelperDashboard = () => {
   // }, []);
 
  
-
       //Accept post
       const acceptPost = async(postId) => {
        setLoadingAccept(postId)
