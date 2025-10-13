@@ -14,7 +14,7 @@ const [error, setError] = useState("")
 const [loading, setLoading] = useState(false)
 
 const { session, registerNewUser } = UserAuth()
-//console.log(session);
+
 
 const location = useLocation()
 const navigate = useNavigate()
