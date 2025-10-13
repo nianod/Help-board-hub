@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import axios from "axios";
 
@@ -12,7 +11,7 @@ const AiChat = () => {
     user: {
       user_metadata: { full_name: "user" },
     },
-  };
+  }
 
   const send = async (e) => {
     e.preventDefault();
@@ -45,12 +44,12 @@ const AiChat = () => {
 
       setMessages((prev) => [...prev, aiReply]);
     } catch (error) {
-      console.error(error);
+      console.error("serious error occurred", error.message);
       setMessages((prev) => [
         ...prev,
         {
           user_name: "AI Assistant",
-          message: "Sorry, I'm currently unavailable. Try again later.",
+          message: "Sorry, An error occurred",
           timestamp: new Date().toLocaleTimeString(),
         },
       ])
