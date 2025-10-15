@@ -31,10 +31,7 @@ const AiChat = () => {
 
     try {
       
-      const res = await axios.post(
-        `${backendUrl}/api/chat`,
-        { message: input }
-      );
+      const res = await axios.post(`${backendUrl}/api/chat`, { message: input });
 
       const aiReply = {
         user_name: "AI Assistant",
@@ -49,7 +46,7 @@ const AiChat = () => {
         ...prev,
         {
           user_name: "AI Assistant",
-          message: "Sorry, An error occurred",
+          message: "Sorry I cannot respond right now",
           timestamp: new Date().toLocaleTimeString(),
         },
       ])

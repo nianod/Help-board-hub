@@ -56,7 +56,7 @@ const handleSubmit = async (event) => {
           const { error: insertError } = await supabase
           .from('users')
           .insert([userInfo]) 
-          console.log('Waaaaaaaaaaaaaaaaaooo')
+           
 
           if( insertError ) {
             console.warn('There was an error', insertError)
