@@ -21,5 +21,5 @@ export default function Home() {
       </div>
       <p className="text-white mt-6">Tap <Link to="/learn-more" className="text-blue-400 hover:underline">Here</Link> To learn how it works</p>
     </div>
-  );
+  )
 }

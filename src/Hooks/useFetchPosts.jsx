@@ -36,3 +36,34 @@ const useFetchPosts = (userId) => {
 }
 
 export default useFetchPosts
+
+
+
+
+
+        // const fetchPosts = async() => {
+        //     try {
+        //         let query = supabase
+        //             .from('postst')
+        //             .select('*')
+        //             .order('created_at', { ascending: false })
+
+        //         if (userId) {
+        //             query = query.eq("user_id", userId)
+        //         }
+
+        //         const { data, error } = await query
+
+        //         if(error) throw error;
+        //         setPosts(data || [])
+        //     } catch (err) {
+        //         setError(err.message || 'Failed to Fetch Posts')
+        //     } finally {
+        //         setLoading(false)
+        //     }
+        // }
+
+
+        // useEffect(() => {
+        //     fetchPosts()
+        // }, [userId])
