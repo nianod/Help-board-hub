@@ -22,7 +22,7 @@ const SeekerDashboard = () => {
       try {
         const { data: { user } } = await supabase.auth.getUser()
         const { data, error } = await supabase
-          .from('postst')
+          .from('postst') //Table name I accidentally misnamed it and when i tried to correct I gat a very catastrophic Bug
           .select('*')
           .eq('user_id', user.id)
           .order('created_at', { ascending: false });
