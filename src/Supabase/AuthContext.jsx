@@ -7,7 +7,7 @@ export const AuthContextProvider = ({ children }) => {
     const [session, setSession] = useState(undefined)
     const [loading, setLoading] = useState(true)
 
-    //Sign up 
+    //register
     const registerNewUser = async (email, username, password) => {
         const { data, error } = await supabase.auth.signUp ({
             email,
