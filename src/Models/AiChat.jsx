@@ -28,13 +28,14 @@ const AiChat = () => {
     setLoading(true);
 
     const backendUrl = import.meta.env.VITE_BACKEND_URL
+    
 
     try {
       
       const res = await axios.post(`${backendUrl}/api/chat`, { message: input });
 
       const aiReply = {
-        user_name: "AI Assistant",
+        user_name: "AI assistant",
         message: res.data.reply,
         timestamp: new Date().toLocaleTimeString(),
       };
@@ -45,8 +46,8 @@ const AiChat = () => {
       setMessages((prev) => [
         ...prev,
         {
-          user_name: "AI Assistant",
-          message: "Sorry I cannot respond right now",
+          user_name: "AI assistant",
+          message: "Sorry, I cannot respond right now",
           timestamp: new Date().toLocaleTimeString(),
         },
       ])
