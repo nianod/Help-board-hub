@@ -110,7 +110,7 @@ const AiChat = () => {
             <button
               type="submit"
               disabled={loading}
-              className="text-white flex gap-1 items-center bg-black p-2 rounded disabled:opacity-50"
+              className="text-white cursor-pointer flex gap-1 items-center bg-black p-2 rounded disabled:opacity-50"
             >
               Send <FaArrowUp />
             </button>

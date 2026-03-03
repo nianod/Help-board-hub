@@ -134,7 +134,7 @@ const UserProfile = () => {
                 key={post.id}
                 className="relative bg-[#556576] shadow-2xl text-[#f5e7e7] p-4 rounded mb-2"
               >
-                {/* Dots button */}
+              
                 <span
                   onClick={() =>
                     setActiveMenuPost(
