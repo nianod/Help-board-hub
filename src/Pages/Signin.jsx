@@ -20,44 +20,51 @@ import { supabase } from '../libs/supabaseClient';
 const handleSubmit = async (event) => {
   event.preventDefault();
   setError("");
-    setLoading(true)
-    
+  setLoading(true);
+
   if (password.length < 6) {
     setError("Password must be at least 6 characters");
+    setLoading(false); // ← you were missing this!
     return;
   }
 
-
   try {
-    const result = await SignIn( email, username, password)
+    const result = await SignIn(email, username, password);
 
+    if (result.success) {
+       const { data: { user } } = await supabase.auth.getUser();
+      const { data: userData, error: fetchError } = await supabase
+        .from('users')
+        .select('role')
+        .eq('id', user.id)
+        .single();
 
-    if(result.success) {
-        console.log('Authentication success. Role:', role)  
-        setError("")
-        const storedRole = localStorage.getItem('role')
-        if(storedRole === 'helper') {
-            navigate('/dashboard/helper')
-             
-        } else if(storedRole === 'seeker') {
-            navigate('/dashboard/seeker')
-            
-        } else {
-            navigate('/')
-        }
-        console.log(`The role is ${localStorage.getItem('role')}`)  
+      if (fetchError || !userData) {
+        setError("Could not retrieve user role.");
+        return;
+      }
+
+      const userRole = userData.role;
+      localStorage.setItem('role', userRole);  
+
+      if (userRole === 'helper') {
+        navigate('/dashboard/helper');
+      } else if (userRole === 'seeker') {
+        navigate('/dashboard/seeker');
+      } else {
+        navigate('/');
+      }
+
     } else {
-        setError( result.error || 'Signing in failed');
+      setError(result.error || 'Signing in failed');
     }
-  } catch(err){
-        setError("Error occured", error.message)
-        console.error(err)
-  }finally {
-    setLoading(false)
+  } catch (err) {
+    setError("An error occurred");
+    console.error(err);
+  } finally {
+    setLoading(false);
   }
-
 };
-
 
     return (
         <div className= 'pb-20'>
